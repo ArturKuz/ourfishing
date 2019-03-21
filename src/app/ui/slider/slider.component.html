@@ -1,5 +1,5 @@
-
-  <carousel class="carousel" *ngIf="sliderImg">
+<section class="grid">
+ <carousel class="carousel col--1-1" *ngIf="sliderImg">
     <slide class="carousel__item" *ngFor="let item of sliderImg">
       <img class="carousel__item-img" [src]="item.url" [alt]="item.name">
     </slide>
@@ -16,3 +16,5 @@
       <img class="carousel__item-img" src="assets/img/slider/plate.jpg" alt="plate">
     </slide> -->
   </carousel>
+</section>
+ 
