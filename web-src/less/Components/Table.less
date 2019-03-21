@@ -1,0 +1,102 @@
+// out: ../../css/components/table.css, compress: true
+@import '../variables.less';
+
+.table{
+    position: relative;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    &&--spec{
+        border-top: 4px solid @color-green;
+
+        tbody{
+
+            tr{
+                &:nth-child(even){
+                    td{
+                        background: lighten(@color-green, 47%);
+                    }
+                }
+                
+                td{
+                    &:nth-child(1){
+                        color: #444;
+                    }
+
+                    &:nth-child(2){
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+    
+    // Element '.table thead'
+    & thead{
+
+        // Element '.table thead th'
+        & th {
+            padding: @table-padding-vertical @table-padding-horizontal;
+            border-bottom: 2px solid @table-td-border-color;
+            font-size: 12px;
+            vertical-align: middle;
+            text-align: left;
+            color: #a0a0a0;
+            font-weight: 400;
+        }
+    }
+
+    // Element '.table tbody'
+    & tbody{
+
+        // Element '.table tbody tr'
+        & tr{
+
+            // Element '.table tbody tr td'
+            & td {
+                padding: @table-padding-vertical @table-padding-horizontal;
+                border-bottom: 1px solid @table-td-border-color;
+                color: #444;
+            }
+
+            // State 'active'
+            &.active {
+                background: @table-active-background;
+            }
+        }
+    }
+
+    // Element '.table tfoot'
+    & tfoot{
+
+        // Element '.table tfoot tr'
+        & tr{
+
+            // Element '.table tfoot tr td'
+            & td {
+                padding: @table-padding-vertical @table-padding-horizontal;
+                // border-bottom: 1px solid @table-td-border-color;
+                color: #444;
+                font-weight: 700;
+                font-style: normal;
+                background: #f5f5f5;
+            }
+        }
+    }
+
+    // Element '.table caption'
+    & caption {
+        text-align: left;
+        color: @table-caption-color;
+    }
+
+    // Element '.table caption, .table tfoot'
+    & caption,
+    & tfoot {
+        font-size: @table-caption-font-size;
+        font-style: italic;
+    }
+
+}
+

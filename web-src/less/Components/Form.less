@@ -1,0 +1,44 @@
+// out: ../../css/components/form.css, compress: true
+@import '../variables.less';
+
+.form{
+    position: relative;
+
+    // Element '.form .form__item'
+    & &__item{
+        display: flex;
+        align-items: center;
+        
+        margin-bottom: 20px;
+    }
+
+    // Element '.form .form__label'
+    & &__label{
+        width: 30%;
+        margin: 0;
+        
+        // Modificator '.form .form__label.form__label--required'
+        &.form__label--required{
+            position: relative;
+            
+            // Element '.form .form__label.form__label--required:after'
+            &:after{
+                content: '*';
+                color: @color-red;
+                margin-left: 6px;
+            }
+        }
+    }
+
+    // Element '.form .form__input'
+    & &__input{
+        width: 70%;
+        margin: 0;
+        
+        // Element '.form .form__input .input-group'
+        .input-group{
+            margin-bottom: 0;
+        }
+    }
+}
+

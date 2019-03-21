@@ -1,0 +1,50 @@
+// out: ../../css/components/icon.css, compress: true
+@import '../variables.less';
+
+.icon{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+    
+    & > svg{
+        &:extend(.icon);
+    }
+
+    &&--sm{
+        > svg{
+            height: 14px;
+        }
+    }
+
+    &&--md{
+        > svg{
+            width: 35px;
+            height: 35px;
+        }   
+    }
+}
+
+.material-icons{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+
+// ---------------------------------------------------------------------------
+// size: xSmall
+// ----------------------------------------------------------------------------
+@media only screen and (max-width: @breakpoint-xs-max) and (min-width: @breakpoint-xs-min) {
+
+
+
+}
+

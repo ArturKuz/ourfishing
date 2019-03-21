@@ -1,0 +1,116 @@
+// out: ../../css/components/main.css, compress: true
+@import '../variables.less';
+
+// ------------------------------------------------------------
+// Block '.dropdown-menu'
+// ------------------------------------------------------------
+.dropdown{
+    width: 100%;
+
+    // Element '.dropdown .dropdown-menu'
+    & .dropdown-menu{
+        visibility: visible;
+        opacity: 1;
+    }
+
+    // Element '.dropdown-menu'
+    &-menu{
+        position: absolute;
+        min-width: 200px;
+        width: 100%;
+        margin-top: 6px;
+        padding: 5px 0;
+        background: #fff;
+        // border: 1px solid #ddd;
+        z-index: 1010;
+        list-style: none;
+        box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.1);
+
+        visibility: hidden;
+        opacity: 0;
+
+        &&--fixed{
+
+            &-200{
+                width: 200px;
+            }
+        }
+
+        // Modificator '.dropdown-menu.dropdown-menu--sm'
+        &&--sm{
+            
+            // Element '.dropdown-menu.dropdown-menu--sm .dropdown-menu__link'
+            .dropdown-menu__link{
+                font-size: .8rem;
+            }
+        }
+
+        // Element '.open .dropdown-menu'
+        .open &{
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        // Element '.header__search .dropdown-menu'
+        .header__search &{
+            margin-top: 2px;
+            border-radius: 3px;
+            padding: 8px 0;
+        }
+
+        // Element '.dropdown-menu .dropdown-menu__item'
+        & &__item{
+
+        }
+
+        // Element '.dropdown-menu .dropdown-menu__link'
+        & &__link{
+            display: block;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: 0;
+            color: #333;
+            text-decoration: none;
+            padding: 5px 15px;
+        }
+
+        // Element '.dropdown-menu .dropdown-menu__link'
+        & &__link{
+            cursor: pointer;
+            transition: all .3ms;
+
+            &:hover{
+                background: #eaf6eb;
+            }
+        }
+    }
+    
+    // Element '.dropdown-header'
+    &-header{
+        color: #c1c1c1;
+        background: #f4f4f4;
+        padding: 5px 15px;        
+    }
+    
+    // Element '.dropdown-item'
+    &-item{
+        display: block;
+        width: 100%;
+        text-align: left;
+        border: none;
+        outline: none;
+        background: transparent;
+        
+        // Element '.header__search .dropdown-item'
+        .header__search &{
+            font-size: 1.2rem;
+            font-weight: 300;
+            
+            // Element '.header__search .dropdown-item.active'
+            &.active{
+                background: lighten(@color-green, 45%);
+            }
+        }
+    }
+}

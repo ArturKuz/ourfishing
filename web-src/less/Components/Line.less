@@ -1,0 +1,27 @@
+// out: ../../css/components/line.css, compress: true
+@import '../variables.less';
+
+.line{
+    position: relative;
+    display: block;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 10px 0;
+    border: none;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #ddd;
+
+    // Modificator '.line .line--sm'
+    &&--sm{
+        border-top: none;
+        border-bottom-width: 1px;
+    }
+    
+    // Modificator '.line .line--dashed'
+    &&--dashed{
+        border-bottom-style: dashed;
+    }
+}
+

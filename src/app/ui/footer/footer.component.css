@@ -1,0 +1,9 @@
+.footer {
+  background: #8190a3;
+  color: #fff;
+  padding: 1em 8rem;
+}
+.footer .footer__social .link {
+  height: 35px;
+  width: 45px;
+}

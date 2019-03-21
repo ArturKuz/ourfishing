@@ -1,0 +1,168 @@
+// out: ../../css/components/badge.css, compress: true
+@import '../variables.less';
+// Name:            Badge
+//
+// ------------------------------------------------------------------------
+// Block 'badge'
+// ------------------------------------------------------------------------
+.badge {
+    display: inline-block;
+    padding: 2px @badge-padding-horizontal;
+    background: @badge-background;
+    font-size: @badge-font-size;
+    font-weight: @badge-font-weight;
+    line-height: @badge-line-height;
+    color: @badge-color;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: @badge-text-transform;
+    border-radius: @badge-border-radius;
+    margin-top: -4px;
+    white-space: nowrap;
+    font-style: normal;
+    font-weight: 500;
+
+    // Element '.badge + .badge'
+    & + &{
+        margin-left: @badge-margin-left;
+    }
+
+    // ----------------------------------------------
+    // All Modificators
+    // ----------------------------------------------
+
+    // Modificator 'badge.badge--lg'
+    // &&--lg{
+        // padding: 3px 5px;
+        // font-size: 12px;
+        // font-weight: 500;
+        // vertical-align: inherit;
+    // }
+
+    // Modificator 'badge.badge--md'
+    &&--md{
+        padding: 3px 10px;
+        font-size: .7rem;
+        // vertical-align: inherit;
+    }
+
+    // Modificator 'badge.badge--md'
+    &&--sm{
+        padding: 0 5px;
+        font-size: 9px;
+        font-weight: 300;
+        // vertical-align: inherit;
+    }
+
+
+
+    // Modificator '.badge.badge--green'
+    &&--green {
+        background-color: @color-green;
+        color: #fff;
+    }
+    
+    // Modificator '.badge.badge--warning'
+    &&--warning {
+        background-color: @badge-background-warning;
+        color: #fff;
+    }
+    
+    // Modificator '.badge.badge--danger'
+    &&--danger {
+        background-color: @badge-background-danger;
+        color: #fff;
+    }
+    
+    // Modificator '.badge.badge--yellow'
+    &&--yellow {
+        background-color: @badge-background-yellow;
+        color: @color-brown;
+    }
+
+    // Modificator '.badge.badge--blue'
+    &&--blue {
+        background-color: @badge-background-blue;
+        color: #fff;
+    }
+
+    // Modificator '.badge.badge--purple'
+    &&--purple {
+        background-color: @badge-background-purple;
+        color: #fff;
+    }
+
+    // Modificator '.badge.badge--gray'
+    &&--gray {
+        background-color: @badge-background-gray;
+        color: #fff;
+    }
+
+    // Modificator '.badge.badge--light-gray'
+    &&--light-gray {
+        background-color: @badge-background-light-gray;
+        color: #666;
+    }
+
+    // Modificator '.badge.badge--red'
+    &&--red {
+        background-color: @color-red;
+        color: #fff;
+    }
+
+    // Modificator '.badge.badge--circle'
+    &&--circle {
+        height: 20px;
+        width: 20px;
+        line-height: 24px;
+        border-radius: 40px;
+        padding: 0;
+
+        &.badge--mini{
+            height: 10px;
+            width: 10px;
+            line-height: 1;
+        }
+        &.badge--sm{
+            height: 15px;
+            width: 15px;
+            line-height: 1;
+        }
+        &.badge--md{
+            height: 21px;
+            width: 21px;
+            line-height: 21px;
+        }
+    }
+
+    // Modificator '.badge.badge--border'
+    &&--border{
+        border: 3px solid #eee;
+        background-color: transparent;
+        
+        &.badge--red{
+            border-color: @color-red;
+        }
+        
+        &.badge--green{
+            border-color: @color-green;
+        }
+    }
+
+    // ---------------------------------------------------------
+    // All elements
+    // ---------------------------------------------------------
+
+    // Element '.badge .badge__icon'
+    & &__icon{
+        color: #fff;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// size: xSmall
+// ----------------------------------------------------------------------------
+@media only screen and (max-width: @breakpoint-xs-max) and (min-width: @breakpoint-xs-min) {
+
+
+}

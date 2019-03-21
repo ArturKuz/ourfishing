@@ -1,0 +1,279 @@
+// out: ../../css/components/panel.css, compress: true
+@import '../variables.less';
+
+// ------------------------------------------------
+// Block '.panel'
+// ------------------------------------------------
+.panel{
+    position: relative;
+    display: block;
+    width: 100%;
+
+    background: #fff;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.05);
+    
+    & + &{
+        margin-top: 15px;
+    }
+    
+    // -----------------------------------
+    // All modificators
+    // -----------------------------------
+
+    // Modificator '.panel.panel--border'
+    &&--border{
+        border: 1px solid #ddd;
+    }
+
+    // Modificator '.panel.panel--tab-pills'
+    &&--tab-pills{
+        box-shadow: none;
+        
+        .tab-container{
+            display: table;
+            width: 100%;
+        }
+
+        .nav.nav-pills{
+            display: table-cell;
+            width: 150px;
+            min-width: 150px;
+            margin-top: 10px;
+            vertical-align: top;
+            padding: 0;
+            list-style: none;
+            background: #eee;
+            border-bottom: none !important;
+
+            .nav-link{
+                position: relative;
+                display: block;
+                padding: 8px 0 8px 12px;
+                text-decoration: none;
+                color: #777;
+                
+                &.active{
+                    color: #333;
+                    background-color: #fff;
+                    z-index: 1;
+                }
+            }
+
+            .nav-item{
+                bottom: 0;
+            }
+        }
+
+        .tab-content {
+            position: relative;
+            display: table-cell;
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 25px 0 rgba(0,0,0,.05);
+            color: #444;
+            vertical-align: top;
+        }
+
+    }
+    
+    // -----------------------------------
+    // All elements
+    // -----------------------------------
+    
+    // Element '.panel.panel__teaser'
+    & &__teaser{
+        position: relative;
+
+        &-img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    }
+    
+    // Element '.panel.panel__teaser'
+    & &__header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        margin: 0 0 15px 0;
+        // border-bottom: 1px solid #ddd;
+        
+        // Element '.panel.panel__teaser-title'
+        &-title{
+            font-weight: 300;
+            margin: 0;
+            font-weight: 400;
+            color: #555;
+        }
+        
+        // Element '.panel.panel__teaser-text'
+        &-text{
+            margin: 0;
+            color: #999;
+            font-size: .9rem;
+            font-weight: 500;
+        }
+        
+        // Element '.panel.panel__teaser + .panel__body'
+        & + .panel__body{
+            padding-top: 0;
+        }
+    }
+    
+    // Element '.panel .panel__body'
+    & &__body{
+        padding: @panel-padding;
+    }
+    
+    // Element '.panel .panel__list'
+    & &__list{
+        
+        .list__item{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            & + .list__item{
+                margin-top: 10px;
+                padding-top: 10px;
+                border-top: 1px solid #ddd;
+            }
+        }
+    }
+
+    & &__footer{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        border-top: 1px solid #eee;
+        padding: @panel-padding 0;
+        margin: 0 @panel-padding;
+    
+        p{
+            margin: 0;
+        }
+    }
+
+    // Element '.page .page__count'
+    & &__count{
+        position: relative;
+        padding: 0 25px;
+        line-height: 1.8rem;
+        font-size: 1rem;
+        color: #949499;
+        background: #fff;
+        margin-left: 40px;
+    }
+    
+}
+
+// ---------------------------------------------------------------------------
+// Block: '.panel-alert'
+// ----------------------------------------------------------------------------
+.panel-alert{
+    position: relative;
+    border: 1px solid #ddd;
+    background: #eee;
+    color: #444;
+    padding: 20px;
+    border-radius: 4px;
+    line-height: 1.4rem;
+    text-align: center;
+
+    // Modificator '.panel-alert.panel-alert--yellow'
+    &&--yellow{
+        border: 1px solid #FFC107;
+        background: rgba(255, 193, 7, 0.2);
+        color: #a54902;
+    }
+
+    // Modificator '.panel-alert.panel-alert--red'
+    &&--red{
+        border: 1px solid @color-red;
+        background: rgba(244, 67, 54, 0.2);
+        color: #b50c00;
+
+        &.panel-alert--fill{
+            background-color: @color-red;
+            color: #fff;
+        }
+    }
+
+    // Modificator '.panel-alert.panel-alert--blue'
+    &&--blue{
+        border: 1px solid @color-blue;
+        background: rgba(33, 150, 243, 0.2);
+        color: @color-blue;
+    }
+
+    // Modificator '.panel-alert.panel-alert--green'
+    &&--green{
+        border: 1px solid @color-green;
+        background: rgba(76, 175, 80, 0.2);
+        color: @color-green-dark;
+
+
+        &.panel-alert--fill{
+            background-color: @color-green;
+            color: #fff;
+        }
+    }
+
+    // Modificator '.panel-alert.panel-alert--sm'
+    &&--sm{
+        padding: 10px;
+
+        .panel-alert__text{
+            font-size: .9rem;
+        }
+    }
+
+    & &__text{
+        margin: 0;
+    }
+
+    .link{
+        color: inherit;
+        transition: all .3s;
+
+        &:hover{
+            color: inherit;
+            opacity: .8;
+        }
+    }
+    
+}
+
+
+// ---------------------------------------------------------------------------
+// size: xSmall
+// ----------------------------------------------------------------------------
+@media only screen and (max-width: @breakpoint-xs-max) and (min-width: @breakpoint-xs-min) {
+
+    .panel{
+
+        // Modificator '.panel.panel--tab-pills'
+        &&--tab-pills{
+            
+            .nav.nav-pills{
+                display: block;
+                width: 100%;
+                margin-top: 0;
+            }
+            
+            .tab-content{
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+}
