@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { url } from 'inspector';
 
 @Component({
   selector: 'app-slider',
@@ -8,6 +9,14 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class SliderComponent implements OnInit {
 
+  //  TEMP -----------
+  sliderImg = [
+    {name: 'boat', url: 'assets/img/slider/boat.jpg'},
+    {name: 'summer', url: 'assets/img/slider/summer.jpg',},
+    {name: 'food', url: 'assets/img/slider/food.jpg',},
+    {name: 'plate', url: 'assets/img/slider/plate.jpg',},
+  ]  
+  // -----------------
   constructor() { }
 
   ngOnInit() {

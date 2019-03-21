@@ -1,3 +1,7 @@
-.carousel .carousel-inner {
-  height: 85vh;
+.carousel__item {
+  height: 600px;
+}
+.carousel__item-img {
+  display: block;
+  width: 100%;
 }

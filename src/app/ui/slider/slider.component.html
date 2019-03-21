@@ -1,19 +1,18 @@
-<!-- <section class="block wrapper"> -->
-  <carousel class="carousel">
-    <slide class="carousel__item">
-      <img class="carousel__item-img" src="assets/img/slider/boat.jpg" alt="first slide">
+
+  <carousel class="carousel" *ngIf="sliderImg">
+    <slide class="carousel__item" *ngFor="let item of sliderImg">
+      <img class="carousel__item-img" [src]="item.url" [alt]="item.name">
+    </slide>
+    <!-- <slide class="carousel__item">
+      <img class="carousel__item-img" src="assets/img/slider/summer.jpg" alt="summer">
     </slide>
     <slide class="carousel__item">
-      <img class="carousel__item-img" src="assets/img/slider/summer.jpg" alt="second slide">
-    </slide>
-    <slide class="carousel__item">
-      <img class="carousel__item-img" src="assets/img/slider/food.jpg" alt="third slide">
+      <img class="carousel__item-img" src="assets/img/slider/food.jpg" alt="food">
     </slide>
     <slide class="carousel__item">
       <img class="carousel__item-img" src="assets/img/slider/brige.jpg" alt="third slide">
     </slide>
     <slide class="carousel__item">
-      <img class="carousel__item-img" src="assets/img/slider/plate.jpg" alt="third slide">
-    </slide>
+      <img class="carousel__item-img" src="assets/img/slider/plate.jpg" alt="plate">
+    </slide> -->
   </carousel>
-<!-- </section> -->
