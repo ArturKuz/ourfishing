@@ -1,3 +1,14 @@
-<p>
-  cards works!
-</p>
+<section class="posts grid m--v-lg" *ngIf="cards">
+  <div class="col--8-10 push--1-10 flex flex--space-around">
+    <div class="posts-card " *ngFor="let card of cards">
+      <figure class=" ">
+        <img class="posts-card__img" [src]="card.imgUrl" [alt]="card.alt">
+        <figcaption class="posts-card__text position--r">
+          <h3 class="subtitle"> {{card.title}}</h3>
+          <p class="text"> {{card.descr}} 
+            <a class="posts-card__link position--a" routerLink="/">see more</a>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
