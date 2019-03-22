@@ -7,3 +7,6 @@
   height: 35px;
   width: 45px;
 }
+.footer .footer__social .link:hover {
+  color: #00b715;
+}
