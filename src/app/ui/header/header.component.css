@@ -19,3 +19,10 @@
   font-weight: 600;
   transform: translateY(-50%);
 }
+.header .btn--green {
+  border: 1px solid #00b715;
+}
+.header .btn--green:hover {
+  background: #fff;
+  color: #00b715;
+}
