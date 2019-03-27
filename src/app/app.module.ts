@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HeaderComponent } from './ui/header/header.component';
 import { FooterComponent } from './ui/footer/footer.component';
 import { SliderComponent } from './ui/slider/slider.component';
@@ -12,6 +13,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { HomeComponent } from './pages/home/home.component';
 import { CardsComponent } from './ui/cards/cards.component';
 
+import { LoginComponent } from './ui/login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,12 +22,16 @@ import { CardsComponent } from './ui/cards/cards.component';
     FooterComponent,
     SliderComponent,
     HomeComponent,
-    CardsComponent
+    CardsComponent,
+  
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     InlineSVGModule.forRoot(),
     CarouselModule.forRoot(),
   ],
