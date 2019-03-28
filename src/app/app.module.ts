@@ -12,8 +12,9 @@ import { InlineSVGModule } from 'ng-inline-svg';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { HomeComponent } from './pages/home/home.component';
 import { CardsComponent } from './ui/cards/cards.component';
-
 import { LoginComponent } from './ui/login/login.component';
+import { AlertComponent } from './alert/alert.component';
+;
 
 @NgModule({
   declarations: [
@@ -22,9 +23,9 @@ import { LoginComponent } from './ui/login/login.component';
     FooterComponent,
     SliderComponent,
     HomeComponent,
-    CardsComponent,
-  
-    LoginComponent
+    CardsComponent,  
+    LoginComponent,  
+    AlertComponent
   ],
   imports: [
     BrowserModule,
