@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import { first } from 'rxjs/operators';
+import { AlertService,  AuthenticationService } from '../../services';
+
 
 @Component({
   selector: 'app-login',
@@ -21,15 +23,18 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location) { }
+    private location: Location,
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService) 
     // redirect to home if already logged in
-  // {if (this.authenticationService.currentUserValue) { 
-  //     this.router.navigate(['/']);}
-  // }
+  {
+    if (this.authenticationService.currentUserValue) { 
+      // this.router.navigate(['/']);
+    }
+  }
   
     
-    // private authenticationService: AuthenticationService,
-    // private alertService: AlertService
+    
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -56,17 +61,17 @@ export class LoginComponent implements OnInit {
        alert('Thx!!! :-)');
        this.loginForm.reset();
        this.loading = true;
-      //  this.authenticationService.login(this.f.username.value, this.f.password.value)
-      //      .pipe(first())
-      //      .subscribe(
-      //          data => {
+       this.authenticationService.login(this.f.username.value, this.f.password.value)
+           .pipe(first())
+           .subscribe(
+               data => {
                    this.router.navigate(['/main']); 
-      //          },
-      //         //  router navigate home page
-      //          error => {
-      //              this.alertService.error(error);
-      //              this.loading = false;
-      //          });
+               },
+              //  router navigate home page
+               error => {
+                   this.alertService.error(error);
+                   this.loading = false;
+               });
    }
 
   goBack(): void {

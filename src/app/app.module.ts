@@ -14,6 +14,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { CardsComponent } from './ui/cards/cards.component';
 import { LoginComponent } from './ui/login/login.component';
 import { AlertComponent } from './alert/alert.component';
+import { RegisterComponent } from './ui/register/register.component';
 ;
 
 @NgModule({
@@ -25,7 +26,7 @@ import { AlertComponent } from './alert/alert.component';
     HomeComponent,
     CardsComponent,  
     LoginComponent,  
-    AlertComponent
+    AlertComponent, RegisterComponent
   ],
   imports: [
     BrowserModule,

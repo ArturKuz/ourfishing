@@ -1,0 +1,78 @@
+<div class="grid">
+  <form class="form col--1-3 push--1-3" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+ 
+    <label class="label" for="email">Your email</label>
+    <input
+      class="input"
+      [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+      formControlName="email"
+      type="email"
+      name="email"
+      placeholder="E-mail"
+    />
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+      <div *ngIf="f.email.errors.required">Email is required</div>
+    </div>
+
+    
+      <label class="label" for="firstName">First Name</label>
+      <input 
+       class="input"
+       [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+       type="text" 
+       formControlName="firstName" 
+       name="firstName"
+       placeholder="First name"
+      />
+      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+          <div *ngIf="f.firstName.errors.required">First Name is required</div>
+      </div>
+  
+ 
+      <label class="label" for="lastName">Last Name</label>
+      <input 
+       class="input"
+       [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" 
+       type="text" 
+       formControlName="lastName" 
+       name="lastName"
+       placeholder="Last Name"
+      >
+      <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+          <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+      </div>
+ 
+    
+    <label class="label" for="password">Password</label>
+    <input
+      class="input"
+      [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+      formControlName="password"
+      type="password"
+      name="password"
+      placeholder="Password"
+    />
+    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+      <div *ngIf="f.password.errors.required">Password is required</div>
+    </div>
+
+    <label class="label" for="confirmPass">Confirm Password</label>
+    <input
+      class="input"
+      [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+      formControlName="confirmPass"
+      type="password"
+      name="confirmPass"
+      placeholder="Repeat Password"
+    />
+    <div *ngIf="submitted && f.confirmPass.errors" class="invalid-feedback">
+      <div *ngIf="f.confirmPass.errors.required">Password is required</div>
+    </div>
+   
+  
+    <button class="btn btn--green" type="submit" [disabled]="loading" >Regisrtration</button>
+    <button class="btn btn--red" type="button" (click)="goBack()">Back</button>
+   
+  </form>
+</div>
+
