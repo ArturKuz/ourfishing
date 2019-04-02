@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService) 
     // redirect to home if already logged in
   {
-    if (this.authenticationService.currentUserValue) { 
+    // if (this.authenticationService.currentUserValue) { 
       // this.router.navigate(['/']);
-    }
+    // }
   }
   
     
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
+      userName: ['', Validators.required],
       password: ['', Validators.required],
       chekSave: ['']
     
@@ -58,10 +58,10 @@ export class LoginComponent implements OnInit {
        if (this.loginForm.invalid) {
            return;
        }
-       alert('Thx!!! :-)');
+       alert('Thx!!!');
        this.loginForm.reset();
        this.loading = true;
-       this.authenticationService.login(this.f.username.value, this.f.password.value)
+       this.authenticationService.login(this.f.userName.value, this.f.password.value)
            .pipe(first())
            .subscribe(
                data => {

@@ -19,7 +19,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
                 // find if any user matches login credentials
                 let filteredUsers = users.filter(user => {
-                    return user.username === request.body.username && user.password === request.body.password;
+                    return user.userName === request.body.userName && user.password === request.body.password;
                 });
 
                 if (filteredUsers.length) {
@@ -27,10 +27,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     let user = filteredUsers[0];
                     let body = {
                         id: user.id,
-                        username: user.username,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
-                        token: 'fake-jwt-token'
+                        username: user.userName,
+                        // firstName: user.firstName,
+                        // lastName: user.lastName,
+                        token: 'jwt-token'
                     };
 
                     return of(new HttpResponse({ status: 200, body: body }));
@@ -125,9 +125,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 }
 
-export let fakeBackendProvider = {
+
+// export let fakeBackendProvider = {
     // use fake backend in place of Http service for backend-less development
-    provide: HTTP_INTERCEPTORS,
-    useClass: FakeBackendInterceptor,
-    multi: true
-};
+    // provide: HTTP_INTERCEPTORS,
+    // useClass: FakeBackendInterceptor,
+    // multi: true
+// };

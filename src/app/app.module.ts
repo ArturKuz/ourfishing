@@ -15,7 +15,7 @@ import { CardsComponent } from './ui/cards/cards.component';
 import { LoginComponent } from './ui/login/login.component';
 import { AlertComponent } from './alert/alert.component';
 import { RegisterComponent } from './ui/register/register.component';
-;
+import {AuthGuard} from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { RegisterComponent } from './ui/register/register.component';
     InlineSVGModule.forRoot(),
     CarouselModule.forRoot(),
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

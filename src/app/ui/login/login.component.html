@@ -1,7 +1,7 @@
 <div class="grid">
   <form class="form col--1-3 push--1-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
  
-    <label class="label" for="email">Your email</label>
+    <!-- <label class="label" for="email">Your email</label>
     <input
       class="input"
       [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
@@ -12,6 +12,19 @@
     />
     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
       <div *ngIf="f.email.errors.required">Email is required</div>
+    </div> -->
+    
+    <label class="label" for="userName">User Name</label>
+    <input 
+     class="input"
+     [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
+     type="text" 
+     formControlName="userName" 
+     name="userName"
+     placeholder="User name"
+    />
+    <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+        <div *ngIf="f.userName.errors.required"> Name is required</div>
     </div>
     
     <label class="label" for="password">Password</label>

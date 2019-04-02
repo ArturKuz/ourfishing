@@ -8,7 +8,12 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthenticationService {
+
+  // URL to web api http://localhost:50184/api/Auth/login
+//   private  apiUrl ='http://localhost:50184/api/Auth/login';
+
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -21,8 +26,11 @@ export class AuthenticationService {
       return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string) {
-      return this.http.post<any>(`/api/Accounts`, { username, password })
+  login(userName: string, password: string) {
+    //   return this.http.post<any>(`${this.apiUrl}`, { username, password })
+
+    return this.http.post<any>(`http://localhost:50184/api/Accounts`, { userName, password })
+
           .pipe(map(user => {
               // login successful if there's a jwt token in the response
               if (user && user.token) {

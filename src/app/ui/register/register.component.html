@@ -15,21 +15,21 @@
     </div>
 
     
-      <label class="label" for="firstName">First Name</label>
+      <label class="label" for="userName">User Name</label>
       <input 
        class="input"
-       [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+       [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
        type="text" 
-       formControlName="firstName" 
-       name="firstName"
-       placeholder="First name"
+       formControlName="userName" 
+       name="userName"
+       placeholder="User name"
       />
-      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-          <div *ngIf="f.firstName.errors.required">First Name is required</div>
+      <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+          <div *ngIf="f.userName.errors.required"> Name is required</div>
       </div>
   
  
-      <label class="label" for="lastName">Last Name</label>
+      <!-- <label class="label" for="lastName">Last Name</label>
       <input 
        class="input"
        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" 
@@ -40,7 +40,7 @@
       >
       <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
           <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-      </div>
+      </div> -->
  
     
     <label class="label" for="password">Password</label>
@@ -56,7 +56,7 @@
       <div *ngIf="f.password.errors.required">Password is required</div>
     </div>
 
-    <label class="label" for="confirmPass">Confirm Password</label>
+    <!-- <label class="label" for="confirmPass">Confirm Password</label>
     <input
       class="input"
       [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
@@ -67,7 +67,7 @@
     />
     <div *ngIf="submitted && f.confirmPass.errors" class="invalid-feedback">
       <div *ngIf="f.confirmPass.errors.required">Password is required</div>
-    </div>
+    </div> -->
    
   
     <button class="btn btn--green" type="submit" [disabled]="loading" >Regisrtration</button>
