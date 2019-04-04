@@ -10,8 +10,10 @@
       <li><a routerLink="/">Contacts</a></li> -->
     </ul>
     <div class="col--1-3 flex flex--right">
-      <button class="btn btn--md btn--green " (click)="signIn()">Sign In</button>
-      <button class="btn btn--md btn--green " (click)="signUp()">Sign Up</button>
+      <button class="btn btn--md btn--green " (click)="signIn()" *ngIf="!isLoggedIn()">Войти</button>
+      <button class="btn btn--md btn--green " (click)="signUp()" *ngIf="!isLoggedIn()">Зарегистрироваться</button>
+      <button class="btn btn--md btn--green " (click)="logOut()" *ngIf="isLoggedIn()">Выйти</button>
+
     </div>
   </nav>
 </header>

@@ -17,32 +17,32 @@
     <label class="label" for="userName">User Name</label>
     <input 
      class="input"
-     [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
+     [ngClass]="{ 'is-invalid': submitted && formFields.userName.errors }"
      type="text" 
      formControlName="userName" 
      name="userName"
      placeholder="User name"
     />
-    <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
-        <div *ngIf="f.userName.errors.required"> Name is required</div>
+    <div *ngIf="submitted && formFields.userName.errors" class="invalid-feedback">
+        <div *ngIf="formFields.userName.errors.required"> Name is required</div>
     </div>
     
     <label class="label" for="password">Password</label>
     <input
       class="input"
-      [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+      [ngClass]="{ 'is-invalid': submitted && formFields.password.errors }"
       formControlName="password"
       type="password"
       name="password"
       placeholder="Password"    
     />
-    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-      <div *ngIf="f.password.errors.required">Password is required</div>
+    <div *ngIf="submitted && formFields.password.errors" class="invalid-feedback">
+      <div *ngIf="formFields.password.errors.required">Password is required</div>
     </div>
 
     <div class="checkbox">
       <input class="checkbox__input" type="checkbox" id="save user" formControlName="chekSave">
-      <label class="checkbox__label" for="save user">
+      <label class="checkbox__label" for="save user" disabled>
         Save me
       </label>
     </div>
@@ -50,6 +50,11 @@
     <button class="btn btn--green" type="submit" [disabled]="loading" >Login</button>
     <button class="btn btn--red" type="button" (click)="goBack()">Back</button>
     <a [routerLink]="['/registration']" class="btn ">Register</a>
+    <div class="">
+        <p> Войти с помощью</p>
+        <a class="link link--reset icon icon--md" [inlineSVG]="'./assets/svg/facebookBtn.svg'"></a>
+        <a class="link link--reset  icon icon--md"  [inlineSVG]="'./assets/svg/vkBtn.svg'"></a>
+      </div>
   </form>
 </div>
 

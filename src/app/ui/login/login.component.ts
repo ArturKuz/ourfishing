@@ -45,11 +45,11 @@ export class LoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    //  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   // convenience getter for easy access to form fields
-   get f() { return this.loginForm.controls; }
+   get formFields() { return this.loginForm.controls; }
 
    onSubmit() {
        this.submitted = true;
@@ -58,19 +58,19 @@ export class LoginComponent implements OnInit {
        if (this.loginForm.invalid) {
            return;
        }
-       alert('Thx!!!');
-       this.loginForm.reset();
+
        this.loading = true;
-       this.authenticationService.login(this.f.userName.value, this.f.password.value)
+       this.authenticationService.login(this.formFields.userName.value, this.formFields.password.value)
            .pipe(first())
            .subscribe(
                data => {
-                   this.router.navigate(['/main']); 
+                   this.router.navigate(['/']); 
                },
-              //  router navigate home page
                error => {
                    this.alertService.error(error);
                    this.loading = false;
+                   this.router.navigate([this.returnUrl]);
+                    // this.router.navigate(['/registration']);
                });
    }
 

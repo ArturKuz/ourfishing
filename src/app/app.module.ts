@@ -16,6 +16,8 @@ import { LoginComponent } from './ui/login/login.component';
 import { AlertComponent } from './alert/alert.component';
 import { RegisterComponent } from './ui/register/register.component';
 import {AuthGuard} from './guards/auth.guard';
+import { LayoutComponent } from './Layout/layout.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import {AuthGuard} from './guards/auth.guard';
     HomeComponent,
     CardsComponent,  
     LoginComponent,  
-    AlertComponent, RegisterComponent
+    AlertComponent, RegisterComponent, LayoutComponent, NotFoundComponent
   ],
   imports: [
     BrowserModule,
