@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HeaderComponent } from './ui/header/header.component';
 import { FooterComponent } from './ui/footer/footer.component';
 import { SliderComponent } from './ui/slider/slider.component';
@@ -11,6 +12,16 @@ import { InlineSVGModule } from 'ng-inline-svg';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { HomeComponent } from './pages/home/home.component';
 import { CardsComponent } from './ui/cards/cards.component';
+import { LoginComponent } from './ui/login/login.component';
+import { AlertComponent } from './alert/alert.component';
+import { RegisterComponent } from './ui/register/register.component';
+import {AuthGuard} from './guards/auth.guard';
+import { LayoutComponent } from './Layout/layout.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { TopMenuComponent } from './ui/top-menu/top-menu.component';
+import { FishingComponent } from './pages/fishing/fishing.component';
+import { EventsComponent } from './pages/events/events.component';
 
 @NgModule({
   declarations: [
@@ -19,16 +30,20 @@ import { CardsComponent } from './ui/cards/cards.component';
     FooterComponent,
     SliderComponent,
     HomeComponent,
-    CardsComponent
+    CardsComponent,  
+    LoginComponent,  
+    AlertComponent, RegisterComponent, LayoutComponent, NotFoundComponent, ProfileComponent, TopMenuComponent, FishingComponent, EventsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     InlineSVGModule.forRoot(),
     CarouselModule.forRoot(),
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

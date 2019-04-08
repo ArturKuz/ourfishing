@@ -1,0 +1,60 @@
+<div class="login grid flex flex--middle">
+  <form class="form col--1-3 push--1-3" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+ 
+    <!-- <label class="label" for="email">Your email</label>
+    <input
+      class="input"
+      [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+      formControlName="email"
+      type="email"
+      name="email"
+      placeholder="E-mail"    
+    />
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+      <div *ngIf="f.email.errors.required">Email is required</div>
+    </div> -->
+    
+    <label class="label" for="userName">Имя </label>
+    <input 
+     class="input"
+     [ngClass]="{ 'is-invalid': submitted && formFields.userName.errors }"
+     type="text" 
+     formControlName="userName" 
+     name="userName"
+     placeholder="Имя пользователя"
+    />
+    <div *ngIf="submitted && formFields.userName.errors" class="invalid-feedback">
+        <div *ngIf="formFields.userName.errors.required"> Name is required</div>
+    </div>
+    
+    <label class="label" for="password">Пароль</label>
+    <input
+      class="input"
+      [ngClass]="{ 'is-invalid': submitted && formFields.password.errors }"
+      formControlName="password"
+      type="password"
+      name="password"
+      placeholder="Пароль"    
+    />
+    <div *ngIf="submitted && formFields.password.errors" class="invalid-feedback">
+      <div *ngIf="formFields.password.errors.required">Password is required</div>
+    </div>
+
+    <div class="checkbox">
+      <input class="checkbox__input" type="checkbox" id="save user" formControlName="chekSave" disabled>
+      <label class="checkbox__label" for="save user" >
+        Запомнить меня
+      </label>
+    </div>
+  
+    <button class="btn btn--green" type="submit" [disabled]="loading" >Войти</button>
+    <button class="btn btn--red" type="button" (click)="goBack()">Назад</button>
+    <a [routerLink]="['/registration']" class="btn ">Зарегистрироваться</a>
+    <div class=" t--c">
+        <p> Войти с помощью</p>
+        <a class="link link--reset icon icon--md" [inlineSVG]="'./assets/svg/facebookBtn.svg'"></a>
+        <a class="link link--reset  icon icon--md"  [inlineSVG]="'./assets/svg/vkBtn.svg'"></a>
+      </div>
+  </form>
+</div>
+

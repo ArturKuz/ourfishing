@@ -1,4 +1,6 @@
 .footer {
+  height: 65px;
+  margin-top: -65px;
   background: #8190a3;
   color: #fff;
   padding: 1em 8rem;
