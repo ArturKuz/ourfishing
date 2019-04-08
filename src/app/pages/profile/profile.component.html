@@ -1,3 +1,90 @@
-<p>
-  profile works!
-</p>
+<div class="profile grid flex flex--middle">
+  <form class="form col--1-3 push--1-3" [formGroup]="profilForm" (ngSubmit)="onSubmit()">
+    
+    <label class="label" for="userName">Имя </label>
+    <input 
+     class="input"
+     [ngClass]="{ 'is-invalid': submitted && formFields.userName.errors }"
+     type="text" 
+     formControlName="userName" 
+     name="userName"
+     placeholder="Имя пользователя"
+    />
+    <div *ngIf="submitted && formFields.userName.errors" class="invalid-feedback">
+        <div *ngIf="formFields.userName.errors.required"> Name is required</div>
+    </div>
+
+    <label class="label" for="userLastName">Фамилия </label>
+    <input 
+     class="input"
+     [ngClass]="{ 'is-invalid': submitted && formFields.userLastName.errors }"
+     type="text" 
+     formControlName="userLastName" 
+     name="userLastName"
+     placeholder="Фамилия"
+    />
+    <div *ngIf="submitted && formFields.userName.errors" class="invalid-feedback">
+        <div *ngIf="formFields.userName.errors.required"> Last Name is required</div>
+    </div>
+    
+    <label class="label" for="phone">Телефон</label>
+    <input
+      class="input"
+      [ngClass]="{ 'is-invalid': submitted && formFields.phone.errors }"
+      formControlName="phone"
+      type="phone"
+      name="phone"
+      placeholder="Телефон ( + ...)"    
+    />
+    <div *ngIf="submitted && formFields.phone.errors" class="invalid-feedback">
+      <div *ngIf="formFields.phone.errors.required">phone is required</div>
+    </div>
+
+    <label class="label" for="country">Страна</label>
+    <input
+      class="input"
+      [ngClass]="{ 'is-invalid': submitted && formFields.country.errors }"
+      formControlName="country"
+      type="text"
+      name="country"
+      placeholder="Страна"    
+    />
+    <div *ngIf="submitted && formFields.country.errors" class="invalid-feedback">
+      <div *ngIf="formFields.country.errors.required">country is required</div>
+    </div>
+
+    <label class="label" for="city">Город</label>
+    <input
+      class="input"
+      [ngClass]="{ 'is-invalid': submitted && formFields.city.errors }"
+      formControlName="city"
+      type="text"
+      name="city"
+      placeholder="Город"    
+    />
+
+    <div *ngIf="submitted && formFields.city.errors" class="invalid-feedback">
+      <div *ngIf="formFields.city.errors.required">city is required</div>
+    </div>
+
+    <label class="label" for="dateBirth">Дата рождения</label>
+    <input
+      class="input"
+      [ngClass]="{ 'is-invalid': submitted && formFields.dateBirth.errors }"
+      formControlName="dateBirth"
+      type="date"
+      name="dateBirth"
+       
+    />
+    <div *ngIf="submitted && formFields.dateBirth.errors" class="invalid-feedback">
+      <div *ngIf="formFields.dateBirth.errors.required">Birth day is required</div>
+    </div>
+
+    git
+    <button class="btn btn--green" type="submit" [disabled]="loading" >Сохранить</button>
+    <button class="btn btn--red" type="button" (click)="goBack()">Назад</button>
+   
+  </form>
+</div>
+
+
