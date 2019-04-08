@@ -18,6 +18,10 @@ import { RegisterComponent } from './ui/register/register.component';
 import {AuthGuard} from './guards/auth.guard';
 import { LayoutComponent } from './Layout/layout.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { TopMenuComponent } from './ui/top-menu/top-menu.component';
+import { FishingComponent } from './pages/fishing/fishing.component';
+import { EventsComponent } from './pages/events/events.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     HomeComponent,
     CardsComponent,  
     LoginComponent,  
-    AlertComponent, RegisterComponent, LayoutComponent, NotFoundComponent
+    AlertComponent, RegisterComponent, LayoutComponent, NotFoundComponent, ProfileComponent, TopMenuComponent, FishingComponent, EventsComponent
   ],
   imports: [
     BrowserModule,

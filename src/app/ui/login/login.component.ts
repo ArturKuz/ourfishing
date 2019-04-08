@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   submitted: boolean = false;
   invalidLogin: boolean = false;
   loading = false;
+  disabledCheckBox = false;
   returnUrl: string;
 
   constructor(
@@ -25,16 +26,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService) 
-    // redirect to home if already logged in
-  {
-    // if (this.authenticationService.currentUserValue) { 
-      // this.router.navigate(['/']);
-    // }
-  }
-  
-    
-    
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({

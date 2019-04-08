@@ -5,18 +5,20 @@ import { LoginComponent } from './ui/login/login.component';
 import { RegisterComponent } from './ui/register/register.component';
 import { LayoutComponent } from './Layout/layout.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { FishingComponent } from './pages/fishing/fishing.component';
+import { EventsComponent } from './pages/events/events.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegisterComponent },
-  // { path: 'books', component: BooksPageComponent, canActivate: [AuthGuard]},
-  // { path: 'detail/:id', component: BooksDetailsComponent, canActivate: [AuthGuard] },
-  // { path: 'add-book', component: AddBookComponent, canActivate: [AuthGuard] },
-  // { path: 'edit-book/:id', component: EditBookComponent, canActivate: [AuthGuard] },
-  // { path: '**', component: NotFoundComponent },
   { path: '', component: LayoutComponent,
     children: [
-      { path: '', component: HomeComponent },
+      { path: '', component: HomeComponent, 
+        data: { title : 'home'}},
+      { path: 'profile', component: ProfileComponent },
+      { path: 'fishing', component: FishingComponent },
+      { path: 'events', component: EventsComponent },
     ]  
   },  
 ];

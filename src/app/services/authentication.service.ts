@@ -11,8 +11,7 @@ import { map } from 'rxjs/operators';
 
 export class AuthenticationService {
 
-  // URL to web api http://localhost:50184/api/Auth/login
-//   private  apiUrl ='http://localhost:50184/api/Auth/login';
+  private  apiUrl ='http://localhost:50184/api/Auth/login';
 
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
@@ -27,9 +26,8 @@ export class AuthenticationService {
   }
 
   login(userName: string, password: string) {
-    //   return this.http.post<any>(`${this.apiUrl}`, { username, password })
 
-    return this.http.post<any>(`http://localhost:50184/api/Auth/login`, { userName, password })
+    return this.http.post<any>(`${this.apiUrl}`, { userName, password })
 
           .pipe(map(user => {
               // login successful if there's a jwt token in the response

@@ -7,11 +7,16 @@ import { Location } from '@angular/common';
 
 import { AlertService, UserService, AuthenticationService } from '../../services';
 
-@Component({templateUrl: 'register.component.html'})
+@Component({ 
+    selector: 'app-register',
+    templateUrl: 'register.component.html',
+    styleUrls: ['./register.component.less']
+})
 export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
+    
 
     constructor(
         private formBuilder: FormBuilder,
@@ -31,7 +36,6 @@ export class RegisterComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
             email: ['', Validators.required],
             userName: ['', Validators.required],
-            // lastName: ['', Validators.required],            
             password: ['', [Validators.required, Validators.minLength(6)]],
             // confirmPass:['']
         });
