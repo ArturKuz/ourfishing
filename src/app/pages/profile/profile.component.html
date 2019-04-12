@@ -79,8 +79,7 @@
     <div *ngIf="submitted && formFields.dateBirth.errors" class="invalid-feedback">
       <div *ngIf="formFields.dateBirth.errors.required">Birth day is required</div>
     </div>
-
-    git
+        
     <button class="btn btn--green" type="submit" [disabled]="loading" >Сохранить</button>
     <button class="btn btn--red" type="button" (click)="goBack()">Назад</button>
    
