@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 
 export class AuthenticationService {
 
-  private  apiUrl ='http://localhost:50184/api/Auth/login';
+  private  apiUrl ='http://localhost:5000/api/Auth/login';
 
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
