@@ -1,59 +1,59 @@
 <div class="profile grid flex flex--middle">
   <form class="form col--1-3 push--1-3" [formGroup]="profilForm" (ngSubmit)="onSubmit()">
     
-    <label class="label" for="userName">Имя </label>
+    <label class="label" for="firstName">Имя </label>
     <input 
      class="input"
-     [ngClass]="{ 'is-invalid': submitted && formFields.userName.errors }"
+     [ngClass]="{ 'is-invalid': submitted && formFields.firstName.errors }"
      type="text" 
-     formControlName="userName" 
-     name="userName"
+     formControlName="firstName" 
+     name="firstName"
      placeholder="Имя пользователя"
     />
-    <div *ngIf="submitted && formFields.userName.errors" class="invalid-feedback">
-        <div *ngIf="formFields.userName.errors.required"> Name is required</div>
+    <div *ngIf="submitted && formFields.firstName.errors" class="invalid-feedback">
+        <div *ngIf="formFields.firstName.errors.required"> Name is required</div>
     </div>
 
-    <label class="label" for="userLastName">Фамилия </label>
+    <label class="label" for="lastName">Фамилия </label>
     <input 
      class="input"
-     [ngClass]="{ 'is-invalid': submitted && formFields.userLastName.errors }"
+     [ngClass]="{ 'is-invalid': submitted && formFields.lastName.errors }"
      type="text" 
-     formControlName="userLastName" 
-     name="userLastName"
+     formControlName="lastName" 
+     name="lastName"
      placeholder="Фамилия"
     />
-    <div *ngIf="submitted && formFields.userName.errors" class="invalid-feedback">
-        <div *ngIf="formFields.userName.errors.required"> Last Name is required</div>
+    <div *ngIf="submitted && formFields.lastName.errors" class="invalid-feedback">
+        <div *ngIf="formFields.lastName.errors.required"> Last Name is required</div>
     </div>
     
-    <label class="label" for="phone">Телефон</label>
+    <label class="label" for="phoneNumber">Телефон</label>
     <input
       class="input"
-      [ngClass]="{ 'is-invalid': submitted && formFields.phone.errors }"
-      formControlName="phone"
+      [ngClass]="{ 'is-invalid': submitted && formFields.phoneNumber.errors }"
+      formControlName="phoneNumber"
       type="phone"
-      name="phone"
+      name="phoneNumber"
       placeholder="Телефон ( + ...)"    
     />
-    <div *ngIf="submitted && formFields.phone.errors" class="invalid-feedback">
-      <div *ngIf="formFields.phone.errors.required">phone is required</div>
+    <div *ngIf="submitted && formFields.phoneNumber.errors" class="invalid-feedback">
+      <div *ngIf="formFields.phoneNumber.errors.required">phoneNumber is required</div>
     </div>
 
-    <label class="label" for="country">Страна</label>
+    <label class="label" for="location">Страна</label>
     <input
       class="input"
-      [ngClass]="{ 'is-invalid': submitted && formFields.country.errors }"
-      formControlName="country"
+      [ngClass]="{ 'is-invalid': submitted && formFields.location.errors }"
+      formControlName="location"
       type="text"
-      name="country"
+      name="location"
       placeholder="Страна"    
     />
-    <div *ngIf="submitted && formFields.country.errors" class="invalid-feedback">
-      <div *ngIf="formFields.country.errors.required">country is required</div>
+    <div *ngIf="submitted && formFields.location.errors" class="invalid-feedback">
+      <div *ngIf="formFields.location.errors.required">location is required</div>
     </div>
 
-    <label class="label" for="city">Город</label>
+    <!-- <label class="label" for="city">Город</label>
     <input
       class="input"
       [ngClass]="{ 'is-invalid': submitted && formFields.city.errors }"
@@ -65,22 +65,22 @@
 
     <div *ngIf="submitted && formFields.city.errors" class="invalid-feedback">
       <div *ngIf="formFields.city.errors.required">city is required</div>
-    </div>
+    </div> -->
 
-    <label class="label" for="dateBirth">Дата рождения</label>
+    <label class="label" for="birthday">Дата рождения</label>
     <input
       class="input"
-      [ngClass]="{ 'is-invalid': submitted && formFields.dateBirth.errors }"
-      formControlName="dateBirth"
+      [ngClass]="{ 'is-invalid': submitted && formFields.birthday.errors }"
+      formControlName="birthday"
       type="date"
-      name="dateBirth"
+      name="birthday"
        
     />
-    <div *ngIf="submitted && formFields.dateBirth.errors" class="invalid-feedback">
-      <div *ngIf="formFields.dateBirth.errors.required">Birth day is required</div>
+    <div *ngIf="submitted && formFields.birthday.errors" class="invalid-feedback">
+      <div *ngIf="formFields.birthday.errors.required">Birth day is required</div>
     </div>
 
-    git
+    
     <button class="btn btn--green" type="submit" [disabled]="loading" >Сохранить</button>
     <button class="btn btn--red" type="button" (click)="goBack()">Назад</button>
    

@@ -16,7 +16,7 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent, 
         data: { title : 'home'}},
-      { path: 'profile', component: ProfileComponent },
+      { path: 'profile/:id', component: ProfileComponent },
       { path: 'fishing', component: FishingComponent },
       { path: 'events', component: EventsComponent },
     ]  
