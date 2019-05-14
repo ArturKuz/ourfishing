@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { TopMenuComponent } from './ui/top-menu/top-menu.component';
 import { FishingComponent } from './pages/fishing/fishing.component';
 import { EventsComponent } from './pages/events/events.component';
+import { JwtInterceptor } from './helper/jwt.interceptor';
+import { ErrorInterceptor } from './helper/error.interceptor';
+import { fakeBackendProvider } from './helper/back-end';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,14 @@ import { EventsComponent } from './pages/events/events.component';
     InlineSVGModule.forRoot(),
     CarouselModule.forRoot(),
   ],
-  providers: [AuthGuard],
+  providers: [
+    AuthGuard, 
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+        // // provider used to create fake backend
+        // fakeBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

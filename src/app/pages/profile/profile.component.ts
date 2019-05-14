@@ -15,49 +15,41 @@ export class ProfileComponent implements OnInit {
   profilForm: FormGroup;
   invalidLogin: boolean = false;
   userId: any;
-  other_header;
+
 
   constructor(
-   private formBuilder: FormBuilder,
-   private userService: UserService,
+    private formBuilder: FormBuilder,
+    private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
-    ) { }
+  ) { }
 
   ngOnInit() {
-    // get id 
-    this.userId = this.route.snapshot.paramMap.get('id'); 
+    // get id
+    this.userId = this.route.snapshot.paramMap.get('id');
 
-    // get token
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    let authToken = currentUser.authToken;
-    // creat headers
-
-    let headers = new HttpHeaders();
-    this.other_header = headers.append('Authorization', `Bearer ${authToken}`);
-
-    console.log(this.other_header.get('Authorization'));
-    
     // form
     this.profilForm = this.formBuilder.group({
-    
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    birthday: ['', Validators.required],
-    location: ['', Validators.required],
-    phoneNumber: ['', Validators.required],
-    // email: ['', Validators.required]
+      avatarUrl: [''],
+      fisherId: [''],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      birthday: ['', Validators.required],
+      location: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      email: ['', Validators.required]
     });
+    console.log(this.profilForm);
+    // get user info
+    this.userService.getById(this.userId)
+      .subscribe(data => {
+        this.profilForm.setValue(data);
+      });
 
-    this.userService.getById(this.userId, this.other_header)
-    .subscribe(data => {
-    this.profilForm.setValue(data);
-    });
-    
   }
 
   onSubmit() {
-    this.userService.update(this.profilForm.value)
+    this.userService.update(this.profilForm.value, this.userId)
       // .pipe(first())
       .subscribe(
         data => {
@@ -67,5 +59,5 @@ export class ProfileComponent implements OnInit {
           alert(error);
         });
   }
-  
+
 }

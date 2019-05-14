@@ -6,31 +6,30 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-    
 
-    private apiUrl = 'http://localhost:5000';    
-    
+  private apiUrl = 'http://localhost:5000';
+
 
   constructor(private http: HttpClient) { }
 
+
   getAll() {
-      return this.http.get<User[]>(`${this.apiUrl}/api/Accounts`);
+    return this.http.get<User[]>(`${this.apiUrl}/api/Accounts`);
   }
-  
 
   getById(id: number) {
-      return this.http.get(`${this.apiUrl}/api/Accounts/${id}`);
+    return this.http.get(`${this.apiUrl}/api/FisherProfile/${id}`);
   }
 
   register(user: User) {
-      return this.http.post(`${this.apiUrl}/api/Accounts`, user);
+    return this.http.post(`${this.apiUrl}/api/Accounts`, user);
   }
 
-  update(user: User) {
-      return this.http.put(`${this.apiUrl}/api/Accounts/${user.id}`, user);
+  update(user: User, id: number) {
+    return this.http.put(`${this.apiUrl}/api/FisherProfile/${id}`, user);
   }
 
   delete(id: number) {
-      return this.http.delete(`${this.apiUrl}/api/Accounts/${id}`);
+    return this.http.delete(`${this.apiUrl}/api/Accounts/${id}`);
   }
 }
