@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
+import { Registration } from '../models/registration';
+import { Fisher } from '../models/fisher';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +23,11 @@ export class UserService {
     return this.http.get(`${this.apiUrl}/api/FisherProfile/${id}`);
   }
 
-  register(user: User) {
+  register(user: Registration) {
     return this.http.post(`${this.apiUrl}/api/Accounts`, user);
   }
 
-  update(user: User, id: number) {
+  update(user: Fisher, id: number) {
     return this.http.put(`${this.apiUrl}/api/FisherProfile/${id}`, user);
   }
 

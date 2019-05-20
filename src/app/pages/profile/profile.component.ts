@@ -12,7 +12,9 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class ProfileComponent implements OnInit {
 
-  profilForm: FormGroup;
+  // fisherForm: FormGroup;
+  fisherForm;
+
   invalidLogin: boolean = false;
   userId: any;
 
@@ -25,35 +27,38 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // get id
+
     this.userId = this.route.snapshot.paramMap.get('id');
 
-    // form
-    this.profilForm = this.formBuilder.group({
-      avatarUrl: [''],
-      fisherId: [''],
+    this.fisherForm = this.formBuilder.group({
+
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       birthday: ['', Validators.required],
       location: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      email: ['', Validators.required]
+      email: ['', Validators.required],
+      gender: [''],
+      avatarUrl: [''],
+      id: [],
     });
-    console.log(this.profilForm);
-    // get user info
+
+    console.log(this.fisherForm);
     this.userService.getById(this.userId)
       .subscribe(data => {
-        this.profilForm.setValue(data);
+        this.fisherForm.setValue(data);
       });
 
   }
 
   onSubmit() {
-    this.userService.update(this.profilForm.value, this.userId)
+    console.log(this.fisherForm);
+
+    this.userService.update(this.fisherForm.value, this.userId)
       // .pipe(first())
       .subscribe(
         data => {
-          this.profilForm.setValue(data);
+          this.fisherForm.setValue(data);
         },
         error => {
           alert(error);
