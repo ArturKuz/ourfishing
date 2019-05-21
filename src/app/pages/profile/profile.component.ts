@@ -38,15 +38,12 @@ export class ProfileComponent implements OnInit {
       location: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       email: ['', Validators.required],
-      gender: [''],
-      avatarUrl: [''],
-      id: [],
     });
 
     console.log(this.fisherForm);
     this.userService.getById(this.userId)
       .subscribe(data => {
-        this.fisherForm.setValue(data);
+        this.fisherForm.patchValue(data);
       });
 
   }
@@ -58,7 +55,7 @@ export class ProfileComponent implements OnInit {
       // .pipe(first())
       .subscribe(
         data => {
-          this.fisherForm.setValue(data);
+          this.fisherForm.patchValue(data);
         },
         error => {
           alert(error);
