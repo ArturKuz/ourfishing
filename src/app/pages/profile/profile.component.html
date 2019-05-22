@@ -2,38 +2,35 @@
   <form class="form col--1-3 push--1-3" [formGroup]="fisherForm" (ngSubmit)="onSubmit()">
 
     <label class="label" for="firstName">Имя </label>
-    <input class="input" [ngClass]="{ 'is-invalid': submitted && formFields.firstName.errors }" type="text"
+    <input class="input" [style.borderColor]=" btnSubmitChecked && isInvalidFirstName ? '#ff0000' : '#e5e5e5'" type="text"
       formControlName="firstName" name="firstName" placeholder="Имя пользователя" />
-    <div *ngIf="submitted && formFields.firstName.errors" class="invalid-feedback">
-      <div *ngIf="formFields.firstName.errors.required"> Name is required</div>
+    <div *ngIf="btnSubmitChecked && isInvalidFirstName" class="error">
+      <div> Только буквы, без пробелов </div>
     </div>
 
     <label class="label" for="lastName">Фамилия </label>
-    <input class="input" [ngClass]="{ 'is-invalid': submitted && formFields.lastName.errors }" type="text"
-      formControlName="lastName" name="lastName" placeholder="Фамилия" />
-    <div *ngIf="submitted && formFields.lastName.errors" class="invalid-feedback">
-      <div *ngIf="formFields.lastName.errors.required"> Last Name is required</div>
+    <input class="input" [style.borderColor]=" btnSubmitChecked && isInvalidLastName ? '#ff0000' : '#e5e5e5'" type="text" formControlName="lastName" name="lastName"
+      placeholder="Фамилия" />
+    <div *ngIf="btnSubmitChecked && isInvalidLastName" class="error">
+      <div> Только буквы, без пробелов </div>
     </div>
 
     <label class="label" for="phoneNumber">Телефон</label>
-    <input class="input" [ngClass]="{ 'is-invalid': submitted && formFields.phoneNumber.errors }"
-      formControlName="phoneNumber" type="phone" name="phoneNumber" placeholder="Телефон ( + ...)" />
-    <div *ngIf="submitted && formFields.phoneNumber.errors" class="invalid-feedback">
-      <div *ngIf="formFields.phoneNumber.errors.required">phoneNumber is required</div>
+    <input class="input" [style.borderColor]=" btnSubmitChecked && isInvalidPhone ? '#ff0000' : '#e5e5e5'" formControlName="phoneNumber" type="phone" name="phoneNumber" placeholder="Телефон ( + ...)" />
+    <div *ngIf="btnSubmitChecked && isInvalidPhone" class="error">
+      <div> Только цифры, без пробелов</div>
     </div>
 
     <label class="label" for="location">Страна</label>
-    <input class="input" [ngClass]="{ 'is-invalid': submitted && formFields.location.errors }"
-      formControlName="location" type="text" name="location" placeholder="Страна" />
-    <div *ngIf="submitted && formFields.location.errors" class="invalid-feedback">
-      <div *ngIf="formFields.location.errors.required">location is required</div>
+    <input class="input" [style.borderColor]=" btnSubmitChecked && isInvalidlocation ? '#ff0000' : '#e5e5e5'" formControlName="location" type="text" name="location" placeholder="Страна" />
+    <div *ngIf="btnSubmitChecked && isInvalidlocation" class="error">
+      <div> Только буквы, без пробелов </div>
     </div>
 
     <label class="label" for="birthday">Дата рождения</label>
-    <input class="input" [ngClass]="{ 'is-invalid': submitted && formFields.birthday.errors }"
-      formControlName="birthday" type="date" name="birthday" />
-    <div *ngIf="submitted && formFields.birthday.errors" class="invalid-feedback">
-      <div *ngIf="formFields.birthday.errors.required">Birth day is required</div>
+    <input class="input" [style.borderColor]=" btnSubmitChecked && isInvalidBirthday ? '#ff0000' : '#e5e5e5'" formControlName="birthday" type="date" name="birthday" />
+    <div *ngIf="btnSubmitChecked && isInvalidBirthday" class="error">
+      <div>Не верный формат даты</div>
     </div>
 
 
