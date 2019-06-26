@@ -1,6 +1,6 @@
 <nav class="top-menu flex  flex--middle">
   <a class="top-menu__item link link--reset" [routerLink]="[ '' ]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Главная</a>
-  <a class="top-menu__item link link--reset" routerLink="/profile" routerLinkActive="active">Профиль</a>
+  <a class="top-menu__item link link--reset" routerLink="/profile/{{id}}" routerLinkActive="active">Профиль</a>
   <a class="top-menu__item link link--reset" routerLink="/fishing" routerLinkActive="active">Рыбалка</a>
   <a class="top-menu__item link link--reset" routerLink="/events" routerLinkActive="active">События</a>
 </nav>
