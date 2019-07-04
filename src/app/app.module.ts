@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MaterialModule } from './material-module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +44,7 @@ import { ConfigModule, ConfigurationService } from './services/configuration.ser
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MaterialModule,
     InlineSVGModule.forRoot(),
     CarouselModule.forRoot(),
   ],
