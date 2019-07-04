@@ -24,7 +24,7 @@ import { FishingComponent } from './pages/fishing/fishing.component';
 import { EventsComponent } from './pages/events/events.component';
 import { JwtInterceptor } from './helper/jwt.interceptor';
 import { ErrorInterceptor } from './helper/error.interceptor';
-import { fakeBackendProvider } from './helper/back-end';
+import { ConfigModule, ConfigurationService } from './services/configuration.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +47,8 @@ import { fakeBackendProvider } from './helper/back-end';
     CarouselModule.forRoot(),
   ],
   providers: [
+    ConfigurationService,
+    ConfigModule.init(),
     AuthGuard, 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

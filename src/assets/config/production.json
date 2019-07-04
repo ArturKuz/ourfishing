@@ -1,0 +1,10 @@
+{
+    "debugging": false,
+    "APP_DOMAIN": "http://localhost:4200",
+    "API_DOMAIN": "http://localhost:5000",
+    "API_BASE_URL": "http://localhost:5000/api/",
+    "API_ENDPOINTS": {
+        "USER": "FisherProfile",
+        "ACCOUNTS": "Accounts"
+    }
+}
