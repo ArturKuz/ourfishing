@@ -1,7 +1,7 @@
-export class Registration {
+export interface Registration {
 
-  email: "string";
-  firstName: "string";
-  password: "string"
+  email: string;
+  firstName: string;
+  password: string
 
 }

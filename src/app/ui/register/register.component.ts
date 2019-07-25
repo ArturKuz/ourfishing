@@ -5,7 +5,7 @@ import { first } from 'rxjs/operators';
 import { Location } from '@angular/common';
 
 
-import { AlertService, UserService, AuthenticationService } from '../../services';
+import { UserService, AuthenticationService } from '../../services';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +23,6 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private userService: UserService,
-    private alertService: AlertService,
     private location: Location,
   ) {
     // redirect to home if already logged in
@@ -57,11 +56,9 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success('Registration successful', true);
           this.router.navigate(['/login']);
         },
         error => {
-          this.alertService.error(error);
           this.loading = false;
         });
   }

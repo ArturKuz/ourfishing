@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { Registration } from '../models/registration';
+import { ConfigurationService } from './configuration.service'
 import { Fisher } from '../models/fisher';
-import {ConfigurationService} from './configuration.service'
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class UserService {
     this.apiUrl = configService.getApiBaseUrl();
     this.apiUserEndpoint = `${this.apiUrl}${this.configService.getApiEndpoint("USER")}`;
     this.apiAccountsEndpoint = `${this.apiUrl}${this.configService.getApiEndpoint("ACCOUNTS")}`
-   }
+  }
 
 
   getAll() {

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertService, UserService } from 'src/app/services';
+import { UserService } from 'src/app/services';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
 import * as moment from 'moment';
 
 
@@ -93,16 +91,16 @@ export class ProfileComponent implements OnInit {
 
     if (!this.fisherForm.invalid) {
 
-    this.userService.update(this.fisherForm.value, this.userId)
-      // .pipe(first())
-      .subscribe(
-        data => {
-          this.fisherForm.patchValue(data);
-          alert('Данные сохранены')
-        },
-        error => {
-          alert(error);
-        });
+      this.userService.update(this.fisherForm.value, this.userId)
+        // .pipe(first())
+        .subscribe(
+          data => {
+            this.fisherForm.patchValue(data);
+            alert('Данные сохранены')
+          },
+          error => {
+            alert(error);
+          });
     }
     return
   }
