@@ -1,8 +1,16 @@
-<section class="grid">
- <carousel class="carousel col--1-1" *ngIf="sliderImg">
-    <slide class="carousel__item" *ngFor="let item of sliderImg">
-      <img class="carousel__item-img" [src]="item?.url" [alt]="item?.name">
-    </slide>    
-  </carousel>
-</section>
+<div  class="swiper-container" [swiper]="config" [(index)]="index">
+  <div class="swiper-wrapper">
+    <div 
+      class="swiper-slide" 
+      *ngFor="let slide of slides"
+      [style.backgroundImage]="'url('+ slide.url +')'"
+    >
+    </div>
+  </div>
  
+  <div class="swiper-scrollbar"></div>
+  <div class="swiper-pagination"></div>
+ 
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>

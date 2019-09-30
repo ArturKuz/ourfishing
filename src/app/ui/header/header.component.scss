@@ -1,0 +1,44 @@
+.header {
+  padding    : 1rem 3rem;
+  background : gray;
+  color      : white;
+  align-items: center;
+
+  & &-logo {
+    &__link {
+      font-size      : 1.5rem;
+      line-height    : 1.2;
+      font-weight    : 500;
+      color          : white;
+      text-decoration: none;
+
+      &:active,
+      &:hover {
+        color          : white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  & .btn {
+    height: 35px;
+
+    &--gray {
+      margin       : 0 1rem;
+      padding      : .5rem 1rem;
+      border       : none;
+      border-radius: 5px;
+      background   : #F3F3F3;
+
+      &:hover {
+        background: white;
+        color     : black;
+      }
+    }
+  }
+
+  &-menu {
+    background: #ADADAD;
+    padding    : .5rem 3rem;
+  }
+}

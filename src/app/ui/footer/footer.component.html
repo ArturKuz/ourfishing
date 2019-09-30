@@ -1,10 +1,10 @@
-<footer class="footer grid">
-  <div class="footer__copy col--1-2 flex flex--middle"> &copy; Copyright 2019 </div>
-  <div class="footer__social col--1-2">
-    <nav class="footer__social-nav flex flex--right">
-      <a class="social__link link link--reset" href="https://twitter.com/"  [inlineSVG]="'./assets/svg/twitter.svg'">Twitter</a>
-      <a class="social__link link link--reset" href="https://www.facebook.com"  [inlineSVG]="'./assets/svg/facebook.svg'">Facebook</a>
-      <a class="social__link link link--reset" href="https://www.instagram.com/"  [inlineSVG]="'./assets/svg/instagram.svg'">Instagram</a>
-    </nav>
-  </div>
+<footer class="footer row justify--space-between align--center">
+  <div class="footer__copy"> &copy; Copyright 2019 </div>
+  <nav class="footer__social row" >
+    <a *ngFor="let link of footerLinks"
+      class="link d-block" 
+      [href]="link.href"  
+      [inlineSVG]="link.icon"
+    >{{link.name}}</a>
+  </nav>
 </footer>

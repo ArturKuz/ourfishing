@@ -1,0 +1,21 @@
+.footer {
+  height    : 65px;
+  background: gray;
+  color     : white;
+  padding   : 0 3rem;
+
+
+  & &__social {
+
+    & .link {
+      color: white;
+      width : 25px;
+      margin: 0 .5rem;
+    }
+
+    & .link:hover {
+      color: black;
+    }
+
+  }
+}

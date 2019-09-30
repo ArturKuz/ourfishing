@@ -1,15 +1,13 @@
-<header class="header grid">  
-    <section class="header-logo col--4-10 push--1-10 ">
-      <a class="header-logo__link link link--reset position--r" routerLink="/" > Our Fishing </a>
-    </section>
-    <section class="header-auth col--5-10 flex flex--right">
-      <button class="btn btn--md btn--green " (click)="signIn()" *ngIf="!isLoggedIn()">Войти</button>
-      <button class="btn btn--md btn--green " (click)="signUp()" *ngIf="!isLoggedIn()">Зарегистрироваться</button>
-      <button class="btn btn--md btn--green " (click)="logOut()" *ngIf="isLoggedIn()">Выйти</button>
-    </section>
-    
-  
-  <section  class="header-top-menu col--1-1 " *ngIf="isLoggedIn()">
-    <app-top-menu class=""></app-top-menu>
+<header class="header row justify--space-between">  
+  <section class="header-logo  ">
+    <a class="header-logo__link" routerLink="/" > Our Fishing </a>
   </section>
+  <section class="header-auth">
+    <button class="btn btn--gray " (click)="signIn()" *ngIf="!isLoggedIn()">Войти</button>
+    <button class="btn btn--gray " (click)="signUp()" *ngIf="!isLoggedIn()">Зарегистрироваться</button>
+    <button class="btn btn--gray " (click)="logOut()" *ngIf="isLoggedIn()">Выйти</button>
+  </section>    
 </header>
+<section  class="header-menu row" *ngIf="isLoggedIn()">
+  <app-top-menu></app-top-menu>
+</section>

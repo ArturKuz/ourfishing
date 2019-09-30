@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaterialModule } from './material-module';
 
+import { SwiperModule } from 'ngx-swiper-wrapper';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +11,6 @@ import { HeaderComponent } from './ui/header/header.component';
 import { FooterComponent } from './ui/footer/footer.component';
 import { SliderComponent } from './ui/slider/slider.component';
 import { InlineSVGModule } from 'ng-inline-svg';
-import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { HomeComponent } from './pages/home/home.component';
 import { CardsComponent } from './ui/cards/cards.component';
 import { LoginComponent } from './ui/login/login.component';
@@ -23,6 +23,9 @@ import { TopMenuComponent } from './ui/top-menu/top-menu.component';
 import { FishingComponent } from './pages/fishing/fishing.component';
 import { EventsComponent } from './pages/events/events.component';
 import { ConfigModule, ConfigurationService } from './services/configuration.service';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -39,17 +42,24 @@ import { ConfigModule, ConfigurationService } from './services/configuration.ser
     ProfileComponent,
     TopMenuComponent,
     FishingComponent,
-    EventsComponent
+    EventsComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     MaterialModule,
     InlineSVGModule.forRoot(),
-    CarouselModule.forRoot(),
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    SwiperModule,
   ],
   providers: [
     ConfigurationService,
@@ -58,8 +68,6 @@ import { ConfigModule, ConfigurationService } from './services/configuration.ser
     // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
-    // // provider used to create fake backend
-    // fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

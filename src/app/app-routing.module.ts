@@ -10,17 +10,13 @@ import { FishingComponent } from './pages/fishing/fishing.component';
 import { EventsComponent } from './pages/events/events.component';
 
 const routes: Routes = [
+  { path: '', component:  HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'registration', component: RegisterComponent },
-  { path: '', component: LayoutComponent,
-    children: [
-      { path: '', component: HomeComponent, 
-        data: { title : 'home'}},
-      { path: 'profile/:id', component: ProfileComponent },
-      { path: 'fishing', component: FishingComponent },
-      { path: 'events', component: EventsComponent },
-    ]  
-  },  
+  { path: 'registration', component: RegisterComponent },    
+  { path: 'profile/:id', component: ProfileComponent },
+  { path: 'fishing', component: FishingComponent },
+  { path: 'events', component: EventsComponent },
+  { path: '**', component: NotFoundComponent } 
 ];
 
 @NgModule({

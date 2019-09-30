@@ -1,0 +1,64 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~swiper/dist/css/swiper.min.css';
+
+@import 'scss/normalize.scss';
+@import 'scss/colors.scss';
+
+.flex,
+.row {
+  display: flex;
+}
+
+.col {
+  display       : flex;
+  flex-direction: column;
+}
+
+.align {
+  &--center {
+    align-items: center;
+  }
+}
+
+.justify {
+  &--center {
+    justify-content: center;
+  }
+
+  &--space-between {
+    justify-content: space-between;
+  }
+}
+
+.d-block {
+  display: block;
+}
+
+.d-none {
+  display: none;
+}
+
+p {
+  &--relative {
+    position: relative;
+  }
+
+  &--absolute {
+    position: absolute;
+  }
+}
+
+button {
+
+  &:hover,
+  &:active,
+  &:focus {
+    box-shadow: none;
+    outline   : none;
+    border    : none;
+  }
+}
+
+svg {
+  fill: currentColor;
+}
