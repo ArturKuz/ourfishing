@@ -1,0 +1,28 @@
+.not-found {
+  height             : 100vh;
+  background         : url("src/assets/img/404.png") no-repeat;
+  background-position: 50%;
+  background-size    : contain;
+
+  .subtitle {
+    margin: 0;
+  }
+
+  .list {
+    list-style: none;
+    padding: 1rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #808080;
+
+    &__item {
+      margin: 0 1rem;
+      cursor: pointer;
+
+      &:hover> .link {
+        color: #000;
+        text-decoration: underline;
+      }
+    }
+  }
+}

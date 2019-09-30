@@ -26,6 +26,8 @@ import { ConfigModule, ConfigurationService } from './services/configuration.ser
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ArrowComponent } from './ui/arrow/arrow.component';
+import { ProgressComponent } from './ui/progress/progress.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TopMenuComponent,
     FishingComponent,
     EventsComponent,
+    ArrowComponent,
+    ProgressComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,6 @@ import { User } from 'src/app/models/user';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
-import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +11,7 @@ import { first } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
+    loading = true;
     currentUser: User;
     currentUserSubscription: Subscription;
     users: User[] = [];
@@ -26,7 +26,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-
+    // test spiner 
+    setTimeout(() => {
+        this.loading = false;
+    }, 5000);
     }
 
     ngOnDestroy() {

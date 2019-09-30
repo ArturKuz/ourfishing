@@ -21,6 +21,7 @@ export class SliderComponent implements OnInit {
     pagination: false,
     watchOverflow: true,
     preloadImages: true,
+    // loop: true,
     // autoplay: {
     //   delay: 5000,
     // },
