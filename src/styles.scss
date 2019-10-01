@@ -52,6 +52,12 @@ p {
   }
 }
 
+a, a:active, a:visited {
+  color: #000;
+  cursor: pointer;
+}
+
+
 button {
 
   &:hover,
@@ -65,4 +71,24 @@ button {
 
 svg {
   fill: currentColor;
+}
+
+.icon {
+  &--sm {
+    svg {
+      width: 24px;
+    }
+  }
+
+  &--md {
+    svg {
+      width: 32px;
+    }
+  }
+
+  &--lg {
+    svg {
+      width: 40px;
+    }
+  }
 }

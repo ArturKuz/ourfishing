@@ -1,5 +1,5 @@
-<div class="registration grid flex flex--middle">
-  <form class="form col--1-3 push--1-3" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<div class="registration row justify--center align--center">
+  <form class="form col" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
     <label class="label" for="email">Ваш email</label>
     <input class="input" [ngClass]="{ 'is-invalid': submitted && formFields.email.errors }" formControlName="email"
@@ -37,14 +37,18 @@
     <div *ngIf="submitted && formFields.password.errors" class="invalid-feedback">
       <div *ngIf="formFields.password.errors.required">Password is required</div>
     </div>
+    
+    <div class="button-group row justify--space-between">
+      <button class="btn btn--gray" type="submit" [disabled]="loading" >Войти</button>
+      <button class="btn btn--gray" type="button" (click)="goBack()">Назад</button>
+    </div>
 
-    <button class="btn btn--green" type="submit" [disabled]="loading">Зарегистрироваться</button>
-    <button class="btn btn--red" type="button" (click)="goBack()">Назад</button>
-
-    <div class="t--c">
+    <div class="col align--center">
       <p> Зарегистрироваться с помощью</p>
-      <a class="link link--reset icon icon--md" [inlineSVG]="'./assets/svg/facebookBtn.svg'"></a>
-      <a class="link link--reset  icon icon--md" [inlineSVG]="'./assets/svg/vkBtn.svg'"></a>
+      <div class="social-group row justify--center">
+        <a class="link icon--md" [inlineSVG]="'./assets/svg/facebookBtn.svg'"></a>
+        <a class="link icon icon--md" [inlineSVG]="'./assets/svg/vkBtn.svg'"></a>
+      </div>
     </div>
 
   </form>
