@@ -7,25 +7,25 @@
         formControlName="email"
         type="email"
         name="email"
-        placeholder="E-mail"    
+        placeholder="E-mail"
       />
       <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
         <div *ngIf="f.email.errors.required">Email is required</div>
       </div> -->
-      
+
       <label class="label" for="userName">Имя </label>
-      <input 
+      <input
       class="input"
       [ngClass]="{ 'is-invalid': submitted && formFields.userName.errors }"
-      type="text" 
-      formControlName="userName" 
+      type="text"
+      formControlName="userName"
       name="userName"
       placeholder="Имя пользователя"
       />
       <div *ngIf="submitted && formFields.userName.errors" class="invalid-feedback">
           <div *ngIf="formFields.userName.errors.required"> Name is required</div>
       </div>
-    
+
       <label class="label" for="password">Пароль</label>
       <input
         class="input"
@@ -33,24 +33,24 @@
         formControlName="password"
         type="password"
         name="password"
-        placeholder="Пароль"    
+        placeholder="Пароль"
       />
       <div *ngIf="submitted && formFields.password.errors" class="invalid-feedback">
         <div *ngIf="formFields.password.errors.required">Password is required</div>
-      </div>   
+      </div>
 
-    <div class="checkbox row align--center">
-      <input class="checkbox__input" type="checkbox" id="save user" formControlName="chekSave" disabled>
+    <!-- <div class="checkbox row align--center">
+      <input class="checkbox__input" type="checkbox" id="save user" formControlName="chekSave">
       <label class="checkbox__label" for="save user" >
         Запомнить меня
       </label>
-    </div>
+    </div> -->
 
     <div class="button-group row justify--space-between">
       <button class="btn btn--gray" type="submit" [disabled]="loading" >Войти</button>
       <button class="btn btn--gray" type="button" (click)="goBack()">Назад</button>
     </div>
-    
+
     <div class="col align--center">
         <a [routerLink]="['/registration']" class="btn ">Зарегистрироваться</a>
         <p> Войти с помощью</p>

@@ -1,13 +1,13 @@
-<header class="header row justify--space-between">  
+<header class="header row justify--space-between">
   <section class="header-logo  ">
     <a class="header-logo__link" routerLink="/" > Our Fishing </a>
   </section>
   <section class="header-auth">
-    <button class="btn btn--gray " (click)="signIn()" *ngIf="!isLoggedIn()">Войти</button>
-    <button class="btn btn--gray " (click)="signUp()" *ngIf="!isLoggedIn()">Зарегистрироваться</button>
-    <button class="btn btn--gray " (click)="logOut()" *ngIf="isLoggedIn()">Выйти</button>
-  </section>    
+    <button class="btn btn--gray " (click)="signIn()" *ngIf="!isLoggedIn">Войти</button>
+    <button class="btn btn--gray " (click)="signUp()" *ngIf="!isLoggedIn">Зарегистрироваться</button>
+    <button class="btn btn--gray " (click)="logOut()" *ngIf="isLoggedIn">Выйти</button>
+  </section>
 </header>
-<section  class="header-menu row" *ngIf="isLoggedIn()">
+<section  class="header-menu row" *ngIf="isLoggedIn">
   <app-top-menu></app-top-menu>
 </section>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Location } from '@angular/common';
 
@@ -19,48 +19,48 @@ export class RegisterComponent implements OnInit {
 
 
   constructor(
-    private formBuilder: FormBuilder,
     private router: Router,
-    private authenticationService: AuthenticationService,
+    private authService: AuthenticationService,
     private userService: UserService,
     private location: Location,
   ) {
     // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      // this.router.navigate(['/']);
+    if (this.authService.currentUserValue) {
+      this.router.navigate(['/']);
     }
   }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      email: ['', Validators.required, Validators.email],
-      userName: ['', Validators.required, Validators.minLength(5)],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      // confirmPass:['']
+    this.registerForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      userName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
   }
 
   // convenience getter for easy access to form fields
-  get formFields() { return this.registerForm.controls; }
+  // get formFields() { return this.registerForm.controls; }
 
   onSubmit() {
-    this.submitted = true;
+    console.log(this.registerForm.value);
 
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
-      return;
-    }
+    // this.submitted = true;
 
-    this.loading = true;
-    this.userService.register(this.registerForm.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate(['/login']);
-        },
-        error => {
-          this.loading = false;
-        });
+    // // stop here if form is invalid
+    // if (this.registerForm.invalid) {
+    //   return;
+    // }
+
+    // this.loading = true;
+    // this.userService.register(this.registerForm.value)
+    //   .pipe(first())
+    //   .subscribe(
+    //     data => {
+    //       this.router.navigate(['/login']);
+    //     },
+    //     error => {
+    //       this.loading = false;
+    //     });
   }
   goBack(): void {
     this.location.back();

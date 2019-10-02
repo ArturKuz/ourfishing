@@ -11,29 +11,36 @@ import { AuthenticationService } from 'src/app/services';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor( 
+  isLoggedIn;
+  constructor(
     private router: Router,
-    private authenticationService: AuthenticationService,) { }
+    private authService: AuthenticationService
+  ) { }
 
   ngOnInit() {
-    this.isLoggedIn();
+    this.authService.isLoggedIn.subscribe( res => this.isLoggedIn = res);
+    this.chechStageUser();
+    console.log('this.isLoggedIn', this.isLoggedIn);
   }
-  signIn(){
+
+  signIn() {
     this.router.navigate(['/login']);
   }
-  signUp(){
+
+  signUp() {
     this.router.navigate(['/registration']);
   }
-  isLoggedIn(){
-    if( localStorage.getItem('currentUser')){
-      return true;
-    }
-    {
-      return false;
+
+  chechStageUser() {
+    if (this.authService.currentUserValue.token) {
+      this.authService.setLoginState(true);
+    } else {
+      this.authService.setLoginState(false);
     }
   }
-  logOut(){
-  this.authenticationService.logout()
-  this.router.navigate(['/'])
-  } 
+
+  logOut() {
+  this.authService.logout();
+  this.router.navigate(['/']);
+  }
 }

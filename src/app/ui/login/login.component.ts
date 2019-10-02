@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { first } from 'rxjs/operators';
@@ -14,14 +14,13 @@ import { AuthenticationService } from 'src/app/services';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  submitted: boolean = false;
-  invalidLogin: boolean = false;
+  submitted = false;
+  invalidLogin = false;
   loading = false;
   disabledCheckBox = false;
   returnUrl: string;
 
   constructor(
-    private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private location: Location,
@@ -29,40 +28,38 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      userName: ['', Validators.required],
-      password: ['', Validators.required],
-      chekSave: ['']
-
+    this.loginForm = new FormGroup({
+      userName: new FormControl('', [Validators.required]),
+      lapassword: new FormControl('', [Validators.required])
     });
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    console.log( this.returnUrl);
   }
 
-  // convenience getter for easy access to form fields
-  get formFields() { return this.loginForm.controls; }
-
   onSubmit() {
-    this.submitted = true;
 
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
+    console.log('loginform =====>', this.loginForm.value );
 
-    this.loading = true;
-    this.authenticationService.login(this.formFields.userName.value, this.formFields.password.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate(['/']);
-        },
-        error => {
-          this.loading = false;
-          this.router.navigate([this.returnUrl]);
-          // this.router.navigate(['/registration']);
-        });
+    // this.submitted = true;
+
+    // if (this.loginForm.invalid) {
+    //   return;
+    // }
+
+    // this.loading = true;
+    // this.authenticationService.login(this.loginForm.value)
+    //   .pipe(first())
+    //   .subscribe(
+    //     data => {
+    //       this.router.navigate(['/']);
+    //     },
+    //     error => {
+    //       this.loading = false;
+    //       this.router.navigate([this.returnUrl]);
+    //       // this.router.navigate(['/registration']);
+    //     });
   }
 
   goBack(): void {

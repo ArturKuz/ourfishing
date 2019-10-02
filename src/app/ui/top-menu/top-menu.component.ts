@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services';
 
 
 
@@ -9,19 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopMenuComponent implements OnInit {
 
-  user={
-    id: null,
-    authToken: "",
-    expiresIn: null,
-    };
-  id = null;
+  user;
+  id;
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
 
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
-    this.id = this.user.id    
+    this.user = this.authService.currentUserValue;
+    this.id = this.user.id;
   }
 
 }

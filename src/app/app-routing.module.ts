@@ -12,11 +12,11 @@ import { EventsComponent } from './pages/events/events.component';
 const routes: Routes = [
   { path: '', component:  HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'registration', component: RegisterComponent },    
+  { path: 'registration', component: RegisterComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'fishing', component: FishingComponent },
   { path: 'events', component: EventsComponent },
-  { path: '**', component: NotFoundComponent } 
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

@@ -28,6 +28,10 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArrowComponent } from './ui/arrow/arrow.component';
 import { ProgressComponent } from './ui/progress/progress.component';
+import { ErrorComponent } from './ui/dialogs/error/error.component';
+import { ErrorService, AuthenticationService, UserService } from './services';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { TokenInterceptor } from './helpers/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -47,6 +51,7 @@ import { ProgressComponent } from './ui/progress/progress.component';
     EventsComponent,
     ArrowComponent,
     ProgressComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,12 +70,18 @@ import { ProgressComponent } from './ui/progress/progress.component';
     MatListModule,
     SwiperModule,
   ],
+  entryComponents: [
+    ErrorComponent,
+  ],
   providers: [
     ConfigurationService,
     ConfigModule.init(),
     AuthGuard,
-    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    ErrorService,
+    AuthenticationService,
+    UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
   ],
   bootstrap: [AppComponent]
