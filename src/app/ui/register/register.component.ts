@@ -25,42 +25,43 @@ export class RegisterComponent implements OnInit {
     private location: Location,
   ) {
     // redirect to home if already logged in
-    if (this.authService.currentUserValue) {
+    if (this.authService.currentUserValue.token) {
       this.router.navigate(['/']);
     }
   }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      userName: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      email: new FormControl('new@test.ru', [Validators.required, Validators.email]),
+      userName: new FormControl('Artur', [Validators.required, Validators.minLength(5)]),
+      password: new FormControl('123123Az', [Validators.required, Validators.minLength(6)]),
     });
   }
 
   // convenience getter for easy access to form fields
-  // get formFields() { return this.registerForm.controls; }
+  get formFields() { return this.registerForm.controls; }
 
   onSubmit() {
-    console.log(this.registerForm.value);
+    console.log(this.registerForm);
 
-    // this.submitted = true;
+    this.submitted = true;
+    console.log(this.registerForm.invalid);
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+      return;
+    }
 
-    // // stop here if form is invalid
-    // if (this.registerForm.invalid) {
-    //   return;
-    // }
-
-    // this.loading = true;
-    // this.userService.register(this.registerForm.value)
-    //   .pipe(first())
-    //   .subscribe(
-    //     data => {
-    //       this.router.navigate(['/login']);
-    //     },
-    //     error => {
-    //       this.loading = false;
-    //     });
+    this.loading = true;
+    this.userService.register(this.registerForm.value)
+      .subscribe(
+        data => {
+          console.log('data', data);
+          this.router.navigate(['/login']);
+        },
+        error => {
+          console.log('error', error);
+          this.loading = false;
+        });
   }
   goBack(): void {
     this.location.back();

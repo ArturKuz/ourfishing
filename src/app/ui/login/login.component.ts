@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      userName: new FormControl('', [Validators.required]),
-      lapassword: new FormControl('', [Validators.required])
+      userName: new FormControl('new@test.ru', [Validators.required]),
+      password: new FormControl('123123Az', [Validators.required])
     });
 
     // get return url from route parameters or default to '/'
@@ -42,24 +42,26 @@ export class LoginComponent implements OnInit {
 
     console.log('loginform =====>', this.loginForm.value );
 
-    // this.submitted = true;
+    this.submitted = true;
 
-    // if (this.loginForm.invalid) {
-    //   return;
-    // }
+    if (this.loginForm.invalid) {
+      return;
+    }
 
-    // this.loading = true;
-    // this.authenticationService.login(this.loginForm.value)
-    //   .pipe(first())
-    //   .subscribe(
-    //     data => {
-    //       this.router.navigate(['/']);
-    //     },
-    //     error => {
-    //       this.loading = false;
-    //       this.router.navigate([this.returnUrl]);
-    //       // this.router.navigate(['/registration']);
-    //     });
+    this.loading = true;
+    this.authenticationService.login(this.loginForm.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log('data', data);
+          // this.router.navigate(['/']);
+        },
+        error => {
+          console.log('error', error.error.Errors[0].Message);
+          this.loading = false;
+          this.router.navigate([this.returnUrl]);
+          // this.router.navigate(['/registration']);
+        });
   }
 
   goBack(): void {

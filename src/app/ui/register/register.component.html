@@ -2,16 +2,24 @@
   <form class="form col" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
     <label class="label" for="email">Ваш email</label>
-    <input class="input" [ngClass]="{ 'is-invalid': submitted && formFields.email.errors }" formControlName="email"
-      type="email" name="email" placeholder="E-mail" />
+    <input class="input"
+           id="email"
+           [ngClass]="{ 'is-invalid': submitted && formFields.email.errors }"
+           formControlName="email"
+           type="email"
+           placeholder="E-mail" />
     <div *ngIf="submitted && formFields.email.errors" class="invalid-feedback">
       <div *ngIf="formFields.email.errors.required">Email is required</div>
     </div>
 
 
     <label class="label" for="userName">Имя </label>
-    <input class="input" [ngClass]="{ 'is-invalid': submitted && formFields.userName.errors }" type="text"
-      formControlName="userName" name="userName" placeholder="Имя пользователя" />
+    <input class="input"
+           id="userName"
+           [ngClass]="{ 'is-invalid': submitted && formFields.userName.errors }"
+           type="text"
+           formControlName="userName"
+           placeholder="Имя пользователя" />
     <div *ngIf="submitted && formFields.userName.errors" class="invalid-feedback">
       <div *ngIf="formFields.userName.errors.required"> Name is required</div>
     </div>
@@ -37,7 +45,7 @@
     <div *ngIf="submitted && formFields.password.errors" class="invalid-feedback">
       <div *ngIf="formFields.password.errors.required">Password is required</div>
     </div>
-    
+
     <div class="button-group row justify--space-between">
       <button class="btn btn--gray" type="submit" [disabled]="loading" >Войти</button>
       <button class="btn btn--gray" type="button" (click)="goBack()">Назад</button>
