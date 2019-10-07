@@ -1,17 +1,5 @@
 <div class="login row justify--center align--center">
   <form class="form col" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <!-- <label class="label" for="email">Your email</label>
-      <input
-        class="input"
-        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-        formControlName="email"
-        type="email"
-        name="email"
-        placeholder="E-mail"
-      />
-      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-        <div *ngIf="f.email.errors.required">Email is required</div>
-      </div> -->
 
       <label class="label" for="userName">Имя </label>
       <input

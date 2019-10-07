@@ -15,28 +15,29 @@ export class TokenInterceptor implements HttpInterceptor{
     const currentUser = this.authService.currentUserValue;
     let clonedRequest;
 
-    if (currentUser && currentUser.token) {
+    if (currentUser) {
       clonedRequest = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${currentUser.token}`,
+          Authorization: `Bearer ${currentUser.authToken}`,
+          'Content-Type': 'application/json',
+        }
+      });
+    } else {
+      clonedRequest = req.clone({
+        setHeaders: {
+          'Content-Type': 'application/json',
         }
       });
     }
 
-    clonedRequest = req.clone({
-      setHeaders: {
-        'Content-Type': 'application/json',
-      }
-    });
-
     return next.handle(clonedRequest)
-    .pipe(
-      map((event: HttpEvent<any>) => {
-          if (event instanceof HttpResponse) {
-              console.log('event--->>>', event);
-          }
-          return event;
-      }));
+    // .pipe(
+    //   map((event: HttpEvent<any>) => {
+    //       if (event instanceof HttpResponse) {
+    //           console.log('event--->>>', event);
+    //       }
+    //       return event;
+    //   }));
   }
 
 }

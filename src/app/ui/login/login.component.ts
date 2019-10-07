@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      userName: new FormControl('new@test.ru', [Validators.required]),
+      userName: new FormControl('Artur', [Validators.required]),
       password: new FormControl('123123Az', [Validators.required])
     });
 
@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     console.log( this.returnUrl);
   }
+
+  get formFields() { return this.loginForm.controls; }
 
   onSubmit() {
 
@@ -54,7 +56,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           console.log('data', data);
-          // this.router.navigate(['/']);
+          this.router.navigate(['/']);
         },
         error => {
           console.log('error', error.error.Errors[0].Message);

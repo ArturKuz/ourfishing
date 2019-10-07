@@ -20,9 +20,10 @@ export class AuthenticationService {
   login( data ) {
     return this.http.post<any>(`${this.apiUrl}`, data)
       .pipe(map(user => {
-        if (user.id && user.authToken) {
+        console.log('user', user);
+        if (user && user.token.authToken) {
           this.setLoginState(true);
-          this.currentUserValue = user;
+          this.currentUserValue = user.token;
         }
         return user;
       }));
