@@ -1,41 +1,22 @@
 <div class="login row justify--center align--center">
   <form class="form col" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-      <label class="label" for="userName">Имя </label>
-      <input
-      class="input"
-      [ngClass]="{ 'is-invalid': submitted && formFields.userName.errors }"
-      type="text"
-      formControlName="userName"
-      name="userName"
-      placeholder="Имя пользователя"
+    <div class="input-group row wrap align--baseline" *ngFor="let item of loginInputs">
+      <label class="label" [for]="item.input"> {{item?.name}} </label>
+      <input class="input"
+            [id]="item.input"
+            [formControlName]="item.input"
+            [ngClass]="{ 'is-invalid': submitted && formFields[item.input].invalid }"
+            [type]="item.type"
+            [placeholder]="item.placeholder"
       />
-      <div *ngIf="submitted && formFields.userName.errors" class="invalid-feedback">
-          <div *ngIf="formFields.userName.errors.required"> Name is required</div>
+      <div class="input-error" *ngIf="submitted && formFields[item.input].invalid">
+        <span  class="input-invalid"> {{item?.error}}</span>
       </div>
-
-      <label class="label" for="password">Пароль</label>
-      <input
-        class="input"
-        [ngClass]="{ 'is-invalid': submitted && formFields.password.errors }"
-        formControlName="password"
-        type="password"
-        name="password"
-        placeholder="Пароль"
-      />
-      <div *ngIf="submitted && formFields.password.errors" class="invalid-feedback">
-        <div *ngIf="formFields.password.errors.required">Password is required</div>
-      </div>
-
-    <!-- <div class="checkbox row align--center">
-      <input class="checkbox__input" type="checkbox" id="save user" formControlName="chekSave">
-      <label class="checkbox__label" for="save user" >
-        Запомнить меня
-      </label>
-    </div> -->
+    </div>
 
     <div class="button-group row justify--space-between">
-      <button class="btn btn--gray" type="submit" [disabled]="loading" >Войти</button>
+      <button class="btn btn--gray" type="submit">Войти</button>
       <button class="btn btn--gray" type="button" (click)="goBack()">Назад</button>
     </div>
 

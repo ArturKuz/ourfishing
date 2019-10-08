@@ -1,49 +1,27 @@
 <div class="registration row justify--center align--center">
   <form class="form col" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-    <label class="label" for="email">Ваш email</label>
-    <input class="input"
-           id="email"
-           [ngClass]="{ 'is-invalid': submitted && formFields.email.errors }"
-           formControlName="email"
-           type="email"
-           placeholder="E-mail" />
-    <div *ngIf="submitted && formFields.email.errors" class="invalid-feedback">
-      <div *ngIf="formFields.email.errors.required">Email is required</div>
-    </div>
-
-
-    <label class="label" for="userName">Имя </label>
-    <input class="input"
-           id="userName"
-           [ngClass]="{ 'is-invalid': submitted && formFields.userName.errors }"
-           type="text"
-           formControlName="userName"
-           placeholder="Имя пользователя" />
-    <div *ngIf="submitted && formFields.userName.errors" class="invalid-feedback">
-      <div *ngIf="formFields.userName.errors.required"> Name is required</div>
-    </div>
-
-
-    <!-- <label class="label" for="lastName">Last Name</label>
-      <input
-       class="input"
-       [ngClass]="{ 'is-invalid': submitted && formFields.lastName.errors }"
-       type="text"
-       formControlName="lastName"
-       name="lastName"
-       placeholder="Last Name"
-      >
-      <div *ngIf="submitted && formFields.lastName.errors" class="invalid-feedback">
-          <div *ngIf="formFields.lastName.errors.required">Last Name is required</div>
-      </div> -->
-
-
-    <label class="label" for="password">Пароль</label>
-    <input class="input" [ngClass]="{ 'is-invalid': submitted && formFields.password.errors }"
-      formControlName="password" type="password" name="password" placeholder="Пароль (мин 6 знаков)" />
-    <div *ngIf="submitted && formFields.password.errors" class="invalid-feedback">
-      <div *ngIf="formFields.password.errors.required">Password is required</div>
+    <div class="input-group row wrap align--baseline"
+         *ngFor="let item of registrationInputs">
+      <label class="label" [for]="item.input">{{item?.name}}</label>
+      <input class="input"
+             [id]="item.input"
+             [formControlName]="item.input"
+             [ngClass]="{ 'is-invalid': submitted && formFields[item.input].invalid }"
+             [type]="item.type"
+             [placeholder]="item.placeholder"
+      />
+      <div class="input-error" *ngIf="submitted && formFields[item.input].invalid">
+        <span class="input-invalid" *ngIf="formFields[item.input].errors.required">
+          {{item?.errorRequired}}
+        </span>
+        <span class="input-invalid" *ngIf="formFields[item.input].errors.email">
+            {{item?.errorEmail}}
+        </span>
+        <span class="input-invalid" *ngIf="formFields[item.input].errors.minlength">
+            {{item?.errorlength}}
+        </span>
+      </div>
     </div>
 
     <div class="button-group row justify--space-between">

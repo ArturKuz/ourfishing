@@ -9,6 +9,10 @@
   display: flex;
 }
 
+.wrap {
+  flex-wrap: wrap;
+}
+
 .col {
   display       : flex;
   flex-direction: column;
@@ -22,6 +26,10 @@
   &--end {
     align-items: flex-end;
   }
+
+  &--baseline {
+    align-items: baseline;
+  }
 }
 
 .justify {
@@ -33,6 +41,11 @@
     justify-content: space-between;
   }
 }
+
+.input-invalid {
+  color: #f00;
+}
+
 
 .d-block {
   display: block;
@@ -61,8 +74,7 @@ a, a:active, a:visited {
 button {
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     box-shadow: none;
     outline   : none;
     border    : none;

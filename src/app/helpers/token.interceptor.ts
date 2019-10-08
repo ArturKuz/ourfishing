@@ -6,7 +6,7 @@ import { AuthenticationService } from '../services';
 
 @Injectable()
 
-export class TokenInterceptor implements HttpInterceptor{
+export class TokenInterceptor implements HttpInterceptor {
 
   constructor(private authService: AuthenticationService) {}
 
@@ -30,7 +30,7 @@ export class TokenInterceptor implements HttpInterceptor{
       });
     }
 
-    return next.handle(clonedRequest)
+    return next.handle(clonedRequest);
     // .pipe(
     //   map((event: HttpEvent<any>) => {
     //       if (event instanceof HttpResponse) {

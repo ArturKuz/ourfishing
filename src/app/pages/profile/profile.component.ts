@@ -13,8 +13,8 @@ import * as moment from 'moment';
 export class ProfileComponent implements OnInit {
 
   // fisherForm: FormGroup;
-  regexpName = new RegExp("^[а-яА-Я]+$");
-  regexpPhone = new RegExp("^\\+[1-9]{1}[0-9]{3,14}$");
+  regexpName = new RegExp('^[а-яА-Я]+$');
+  regexpPhone = new RegExp('^\\+[1-9]{1}[0-9]{3,14}$');
 
   fisherForm;
 
@@ -23,7 +23,6 @@ export class ProfileComponent implements OnInit {
   isInvalidBirthday;
   isInvalidlocation;
   isInvalidPhone;
-
 
   btnSubmitChecked = false;
   userId;
@@ -38,39 +37,39 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
-
     this.userId = this.route.snapshot.paramMap.get('id');
 
     this.fisherForm = this.formBuilder.group({
 
       firstName: ['', Validators.pattern(this.regexpName)],
       lastName: ['', Validators.pattern(this.regexpName)],
-      birthday: ['',],
-      location: ['', Validators.pattern(this.regexpName)],
       phoneNumber: ['', Validators.pattern(this.regexpPhone)],
-      email: ['',],
+      email: ['', Validators.email],
 
     });
 
     console.log(this.fisherForm);
-    this.userService.getById(this.userId)
-      .subscribe(data => {
-        this.fisherForm.patchValue(data);
-      });
+
+    this.getFisher();
 
   }
+
+  getFisher() {
+    this.userService.getById(this.userId)
+    .subscribe(data => {
+      console.log(data);
+      // this.fisherForm.patchValue(data);
+    });
+  }
+
   changeDateFormat() {
     const birthday = this.fisherForm.controls.birthday;
     this.fisherForm.controls.birthday = moment(birthday).format('dd/mm/yyyy');
   }
 
-
-
   onSubmit() {
 
-
     this.btnSubmitChecked = true;
-
 
     const controls = this.fisherForm.controls;
 
@@ -96,13 +95,13 @@ export class ProfileComponent implements OnInit {
         .subscribe(
           data => {
             this.fisherForm.patchValue(data);
-            alert('Данные сохранены')
+            alert('Данные сохранены');
           },
           error => {
             alert(error);
           });
     }
-    return
+    return;
   }
 
 }

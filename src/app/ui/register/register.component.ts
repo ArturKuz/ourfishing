@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 
 
 import { UserService, AuthenticationService } from '../../services';
+import { REG_INPUTS } from './registrationData';
 
 @Component({
   selector: 'app-register',
@@ -13,9 +14,10 @@ import { UserService, AuthenticationService } from '../../services';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  registrationInputs = REG_INPUTS;
   registerForm: FormGroup;
-  loading = false;
   submitted = false;
+  loading = false;
 
 
   constructor(
@@ -38,15 +40,11 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  // convenience getter for easy access to form fields
   get formFields() { return this.registerForm.controls; }
 
   onSubmit() {
-    console.log(this.registerForm);
-
     this.submitted = true;
-    console.log(this.registerForm.invalid);
-    // stop here if form is invalid
+
     if (this.registerForm.invalid) {
       return;
     }
@@ -61,7 +59,12 @@ export class RegisterComponent implements OnInit {
         error => {
           console.log('error', error);
           this.loading = false;
-        });
+        },
+        () => {
+          console.log('Complite!!!');
+          this.loading = false;
+        }
+      );
   }
   goBack(): void {
     this.location.back();

@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services';
+import { LOGIN_INPUTS } from './loginData';
 
 
 @Component({
@@ -12,13 +13,13 @@ import { AuthenticationService } from 'src/app/services';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  returnUrl: string;
   loginForm: FormGroup;
+  loginInputs = LOGIN_INPUTS;
   submitted = false;
   invalidLogin = false;
   loading = false;
   disabledCheckBox = false;
-  returnUrl: string;
 
   constructor(
     private router: Router,
@@ -35,14 +36,11 @@ export class LoginComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    console.log( this.returnUrl);
   }
 
   get formFields() { return this.loginForm.controls; }
 
   onSubmit() {
-
-    console.log('loginform =====>', this.loginForm.value );
 
     this.submitted = true;
 
@@ -55,7 +53,6 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          console.log('data', data);
           this.router.navigate(['/']);
         },
         error => {
@@ -63,7 +60,12 @@ export class LoginComponent implements OnInit {
           this.loading = false;
           this.router.navigate([this.returnUrl]);
           // this.router.navigate(['/registration']);
-        });
+        },
+        () => {
+          console.log('Complite!!!');
+          this.loading = false;
+        }
+      );
   }
 
   goBack(): void {
