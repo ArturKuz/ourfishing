@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { first } from 'rxjs/operators';
@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
+    console.log(this.route.snapshot);
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
@@ -50,7 +51,6 @@ export class LoginComponent implements OnInit {
 
     this.loading = true;
     this.authenticationService.login(this.loginForm.value)
-      .pipe(first())
       .subscribe(
         data => {
           this.router.navigate(['/']);

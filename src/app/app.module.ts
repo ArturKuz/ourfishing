@@ -32,6 +32,8 @@ import { ErrorComponent } from './ui/dialogs/error/error.component';
 import { ErrorService, AuthenticationService, UserService } from './services';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { TokenInterceptor } from './helpers/token.interceptor';
+import { SuccessComponent } from './ui/dialogs/success/success.component';
+import { SuccessService } from './services/success.service';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { TokenInterceptor } from './helpers/token.interceptor';
     ArrowComponent,
     ProgressComponent,
     ErrorComponent,
+    SuccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,12 +75,14 @@ import { TokenInterceptor } from './helpers/token.interceptor';
   ],
   entryComponents: [
     ErrorComponent,
+    SuccessComponent,
   ],
   providers: [
     ConfigurationService,
     ConfigModule.init(),
     AuthGuard,
     ErrorService,
+    SuccessService,
     AuthenticationService,
     UserService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

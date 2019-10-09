@@ -1,30 +1,23 @@
 <div class="profile row justify--center align--center">
   <form class="form col" [formGroup]="fisherForm" (ngSubmit)="onSubmit()">
 
-    <label class="label" for="firstName">Имя </label>
-    <input class="input" [style.borderColor]=" btnSubmitChecked && isInvalidFirstName ? '#ff0000' : '#e5e5e5'" type="text"
-      formControlName="firstName" name="firstName" placeholder="Имя пользователя" />
-    <div *ngIf="btnSubmitChecked && isInvalidFirstName" class="error">
-      <div> Только буквы, без пробелов </div>
-    </div>
-
-    <label class="label" for="lastName">Фамилия </label>
-    <input class="input" [style.borderColor]=" btnSubmitChecked && isInvalidLastName ? '#ff0000' : '#e5e5e5'" type="text" formControlName="lastName" name="lastName"
-      placeholder="Фамилия" />
-    <div *ngIf="btnSubmitChecked && isInvalidLastName" class="error">
-      <div> Только буквы, без пробелов </div>
-    </div>
-
-    <label class="label" for="phoneNumber">Телефон</label>
-    <input class="input" [style.borderColor]=" btnSubmitChecked && isInvalidPhone ? '#ff0000' : '#e5e5e5'" formControlName="phoneNumber" type="phone" name="phoneNumber" placeholder="Телефон ( + ...)" />
-    <div *ngIf="btnSubmitChecked && isInvalidPhone" class="error">
-      <div> Только цифры, без пробелов</div>
-    </div>
-
-    <label class="label" for="location">Email</label>
-    <input class="input" [style.borderColor]=" btnSubmitChecked && isInvalidlocation ? '#ff0000' : '#e5e5e5'" formControlName="location" type="text" name="location" placeholder="Страна" />
-    <div *ngIf="btnSubmitChecked && isInvalidlocation" class="error">
-      <div> Только буквы, без пробелов </div>
+    <div class="input-group row wrap align--baseline" *ngFor="let item of profileInputs">
+      <label class="label" [for]="item.input"> {{item?.name}} </label>
+      <input class="input"
+             [id]="item.input"
+             [formControlName]="item.input"
+             [ngClass]="{ 'is-invalid': submitted && formFields[item.input].invalid }"
+             [type]="item.type"
+             [placeholder]="item.placeholder"/>
+      <!-- Errors -->
+      <div class="input-error" *ngIf="submitted && formFields[item.input].invalid">
+        <span class="input-invalid" *ngIf="formFields[item.input].errors.pattern">
+          {{item?.errorPattern}}
+        </span>
+        <span class="input-invalid" *ngIf="formFields[item.input].errors.email">
+            {{item?.errorEmail}}
+        </span>
+      </div>
     </div>
 
     <div class="button-group row justify--space-between">

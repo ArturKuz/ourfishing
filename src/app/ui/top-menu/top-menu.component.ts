@@ -9,16 +9,12 @@ import { AuthenticationService } from 'src/app/services';
   styleUrls: ['./top-menu.component.scss']
 })
 export class TopMenuComponent implements OnInit {
-
-  user;
   id;
 
   constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
-
-    this.user = this.authService.currentUserValue;
-    this.id = this.user.id;
+    this.id = this.authService.currentUserValue.id;
   }
 
 }

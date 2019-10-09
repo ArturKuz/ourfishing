@@ -16,7 +16,7 @@
     </div>
 
     <div class="button-group row justify--space-between">
-      <button class="btn btn--gray" type="submit">Войти</button>
+      <button class="btn btn--gray" type="submit" [disabled]="loading">Войти</button>
       <button class="btn btn--gray" type="button" (click)="goBack()">Назад</button>
     </div>
 

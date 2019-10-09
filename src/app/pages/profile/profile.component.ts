@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { PROFILE_INPUTS } from './profileData';
+import { SuccessService } from 'src/app/services/success.service';
 
 
 @Component({
@@ -12,96 +14,81 @@ import * as moment from 'moment';
 })
 export class ProfileComponent implements OnInit {
 
-  // fisherForm: FormGroup;
+  profileInputs = PROFILE_INPUTS;
+
   regexpName = new RegExp('^[а-яА-Я]+$');
   regexpPhone = new RegExp('^\\+[1-9]{1}[0-9]{3,14}$');
+  fisherForm: FormGroup;
 
-  fisherForm;
-
-  isInvalidFirstName;
-  isInvalidLastName;
-  isInvalidBirthday;
-  isInvalidlocation;
-  isInvalidPhone;
-
-  btnSubmitChecked = false;
+  submitted = false;
   userId;
 
-
   constructor(
-    private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router,
     private route: ActivatedRoute,
+    private successService: SuccessService,
   ) { }
 
   ngOnInit() {
 
     this.userId = this.route.snapshot.paramMap.get('id');
 
-    this.fisherForm = this.formBuilder.group({
-
-      firstName: ['', Validators.pattern(this.regexpName)],
-      lastName: ['', Validators.pattern(this.regexpName)],
-      phoneNumber: ['', Validators.pattern(this.regexpPhone)],
-      email: ['', Validators.email],
-
+    this.fisherForm = new FormGroup({
+      email: new FormControl('', [Validators.email]),
+      firstName: new FormControl('', [Validators.pattern(this.regexpName)]),
+      lastName: new FormControl('', [Validators.pattern(this.regexpName)]),
+      phoneNumber: new FormControl('', [Validators.pattern(this.regexpPhone)]),
     });
 
-    console.log(this.fisherForm);
-
     this.getFisher();
-
   }
 
   getFisher() {
     this.userService.getById(this.userId)
-    .subscribe(data => {
-      console.log(data);
-      // this.fisherForm.patchValue(data);
+    .subscribe(res => {
+      const data = res['data'];
+
+      this.fisherForm.patchValue(this.updateFormValue(data));
+      console.log(this.fisherForm);
     });
   }
 
-  changeDateFormat() {
-    const birthday = this.fisherForm.controls.birthday;
-    this.fisherForm.controls.birthday = moment(birthday).format('dd/mm/yyyy');
+  updateFormValue(data) {
+    console.log(data);
+    const {email, firstName, lastName, phoneNumber} = data;
+    const obj = {
+      email,
+      firstName,
+      lastName,
+      phoneNumber
+    };
+    return obj;
   }
+
+  // changeDateFormat() {
+  //   const birthday = this.fisherForm.controls.birthday;
+  //   this.fisherForm.controls.birthday = moment(birthday).format('dd/mm/yyyy');
+  // }
+
+  get formFields() { return this.fisherForm.controls; }
 
   onSubmit() {
 
-    this.btnSubmitChecked = true;
+    this.submitted = true;
 
-    const controls = this.fisherForm.controls;
-
-    this.isInvalidFirstName = controls.firstName.invalid ? true : false;
-    this.isInvalidLastName = controls.lastName.invalid ? true : false;
-    this.isInvalidBirthday = controls.birthday.invalid ? true : false;
-    this.isInvalidlocation = controls.location.invalid ? true : false;
-    this.isInvalidPhone = controls.phoneNumber.invalid ? true : false;
-
-    // console.log(this.fisherForm);
-
-    // console.log(this.isInvalidFirstName);
-    // console.log(this.isInvalidLastName);
-    // console.log(this.isInvalidBirthday);
-    // console.log(this.isInvalidlocation);
-    // console.log(this.isInvalidPhone);
-
-
-    if (!this.fisherForm.invalid) {
-
-      this.userService.update(this.fisherForm.value, this.userId)
-        // .pipe(first())
-        .subscribe(
-          data => {
-            this.fisherForm.patchValue(data);
-            alert('Данные сохранены');
-          },
-          error => {
-            alert(error);
-          });
+    if (this.fisherForm.invalid) {
+      return;
     }
-    return;
+
+    this.userService.update(this.fisherForm.value, this.userId)
+      .subscribe(
+        res => {
+          this.getFisher();
+          this.successService.openSuccessPopUp('Данные сохранены');
+        },
+        error => {
+          console.log(error);
+        });
   }
 
 }

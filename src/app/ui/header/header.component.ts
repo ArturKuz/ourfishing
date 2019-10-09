@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services';
@@ -9,18 +9,26 @@ import { AuthenticationService } from 'src/app/services';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   isLoggedIn;
+  subscription;
+
   constructor(
     private router: Router,
     private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
-    this.authService.isLoggedIn.subscribe( res => this.isLoggedIn = res);
     this.chechStageUser();
-    console.log('this.isLoggedIn', this.isLoggedIn);
+    this.subscription = this.authService.isLoggedIn.subscribe( res => {
+      this.isLoggedIn = res;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    console.log('unsubscri');
   }
 
   signIn() {
@@ -32,7 +40,7 @@ export class HeaderComponent implements OnInit {
   }
 
   chechStageUser() {
-    if (this.authService.currentUserValue.token) {
+    if (this.authService.currentUserValue.authToken) {
       this.authService.setLoginState(true);
     } else {
       this.authService.setLoginState(false);

@@ -9,8 +9,9 @@
              [formControlName]="item.input"
              [ngClass]="{ 'is-invalid': submitted && formFields[item.input].invalid }"
              [type]="item.type"
-             [placeholder]="item.placeholder"
-      />
+             [placeholder]="item.placeholder" />
+
+      <!-- Errors -->
       <div class="input-error" *ngIf="submitted && formFields[item.input].invalid">
         <span class="input-invalid" *ngIf="formFields[item.input].errors.required">
           {{item?.errorRequired}}
