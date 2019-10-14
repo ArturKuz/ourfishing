@@ -34,6 +34,8 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
 import { TokenInterceptor } from './helpers/token.interceptor';
 import { SuccessComponent } from './ui/dialogs/success/success.component';
 import { SuccessService } from './services/success.service';
+import { FishComponent } from './pages/fish/fish.component';
+import { FishInfoComponent } from './pages/fish/fish-info/fish-info.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { SuccessService } from './services/success.service';
     ProgressComponent,
     ErrorComponent,
     SuccessComponent,
+    FishComponent,
+    FishInfoComponent,
   ],
   imports: [
     BrowserModule,

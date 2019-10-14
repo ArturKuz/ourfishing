@@ -1,0 +1,23 @@
+.fish-id {
+
+  padding: 1rem 3rem;
+
+  &-item {
+    margin: 0;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .img {
+    min-width: 250px;
+    width: 250px;
+  }
+
+  .text {
+    padding-left: 2rem;
+    line-height: 1.5;
+    text-indent: 35px;
+  }
+}

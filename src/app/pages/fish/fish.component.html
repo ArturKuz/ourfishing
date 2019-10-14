@@ -1,0 +1,11 @@
+<section class="fish">
+  <h1 class="title">Справочник</h1>
+  <ul class="fish-list">
+    <li class="fish-item row justify--center"
+        *ngFor="let fish of fishes">
+        <a class="w--30" routerLink="/fish/{{fish.id}}">{{fish.name}}</a>
+        <span class="w--30">info</span>
+        <span class="w--30">info</span>
+  </li>
+  </ul>
+</section>

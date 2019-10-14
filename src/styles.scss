@@ -4,6 +4,10 @@
 @import 'scss/normalize.scss';
 @import 'scss/colors.scss';
 
+* {
+  box-sizing: border-box;
+}
+
 .flex,
 .row {
   display: flex;
@@ -39,6 +43,27 @@
 
   &--space-between {
     justify-content: space-between;
+  }
+}
+
+.w {
+  &--100 {
+    width: 100%;
+  }
+  &--70 {
+    width: 70%;
+  }
+  &--60 {
+    width: 60%;
+  }
+  &--50 {
+    width: 50%;
+  }
+  &--40 {
+    width: 40%;
+  }
+  &--30 {
+    width: 30%;
   }
 }
 
