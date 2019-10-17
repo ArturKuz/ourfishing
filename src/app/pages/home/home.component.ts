@@ -10,20 +10,19 @@ import { AuthenticationService } from 'src/app/services';
 })
 export class HomeComponent implements OnInit {
 
-    loading = true;
-    currentUser: User;
-    currentUserSubscription: Subscription;
-    users: User[] = [];
+    loading;
+    // currentUser: User;
+    // users: User[] = [];
 
-    constructor(
-        private authenticationService: AuthenticationService,
-    ) { }
+    constructor( ) { }
 
-    ngOnInit() {
+  ngOnInit() {
+
+    this.loading = false;
     // test spiner
-      setTimeout(() => {
-        this.loading = false;
-      }, 2000);
-    }
+    //   setTimeout(() => {
+    //     this.loading = false;
+    //   }, 2000);
+  }
 }
 

@@ -3,27 +3,29 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthenticationService, ErrorService } from '../services';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(
       private authService: AuthenticationService,
       private errorService: ErrorService,
-      // private location: Location,
+      private router: Router,
       ) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+        let error;
         return next.handle(request).pipe(catchError(err => {
             if (err.status === 401) {
-              console.log('Unauthorized 401');
-              this.errorService.openErrorDialog(err.error.error);
-              // auto logout if 401 response returned from api
               this.authService.logout();
-              // this.location.reload(true);
+              this.router.navigate(['/']);
             }
 
-            const error = err.error.Errors[0].Message || err.statusText;
-            // const error = err.error.Errors[0].message
+            err.error ? error = err.error.Errors[0].Message :
+            err.message ? error = err.message :
+            err.statusText ? error = err.statusText : error = 'Unknown error';
+
             this.errorService.openErrorDialog(error);
             return throwError(err);
         }));

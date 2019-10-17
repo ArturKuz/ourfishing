@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
           console.log('error', error.error.Errors[0].Message);
           this.loading = false;
           this.router.navigate([this.returnUrl]);
-          // this.router.navigate(['/registration']);
         },
         () => {
           console.log('Complite!!!');

@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.chechStageUser();
+    this.checkStageUser();
     this.subscription = this.authService.isLoggedIn.subscribe( res => {
       this.isLoggedIn = res;
     });
@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/registration']);
   }
 
-  chechStageUser() {
+  checkStageUser() {
     if (this.authService.currentUserValue.authToken) {
       this.authService.setLoginState(true);
     } else {

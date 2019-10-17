@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
       email: new FormControl('', [Validators.email]),
       firstName: new FormControl('', [Validators.pattern(this.regexpName)]),
       lastName: new FormControl('', [Validators.pattern(this.regexpName)]),
-      phoneNumber: new FormControl('', [Validators.pattern(this.regexpPhone)]),
+      phoneNumber: new FormControl('', [Validators.pattern(this.regexpPhone), Validators.required]),
     });
 
     this.getFisher();

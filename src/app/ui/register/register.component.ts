@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
-
-
-import { UserService, AuthenticationService } from '../../services';
+import { UserService, AuthenticationService, ErrorService } from '../../services';
 import { REG_INPUTS } from './registrationData';
 
 @Component({
@@ -25,13 +22,9 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private authService: AuthenticationService,
     private userService: UserService,
+    private errorService: ErrorService,
     private location: Location,
-  ) {
-    // redirect to home if already logged in
-    if (this.authService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
-  }
+  ) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -47,6 +40,11 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
 
     if (this.registerForm.invalid) {
+      return;
+    }
+
+    if (this.authService.currentUserValue.authToken) {
+      this.errorService.openErrorDialog('Вы уже зарегистрированы');
       return;
     }
 
