@@ -7,16 +7,17 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ConfigurationService {
-  private _config: Object
+  private _config;
   private _env: string;
   constructor(private http: HttpClient) { }
 
   load() {
     return new Promise((resolve, reject) => {
       this._env = 'development';
-      if (environment.production)
+      if (environment.production) {
         this._env = 'production';
-      console.log(this._env)
+        console.log(this._env);
+      }
       this.http.get<any>('./assets/config/' + this._env + '.json')
         .subscribe((data) => {
           this._config = data;
@@ -34,25 +35,25 @@ export class ConfigurationService {
     return this._env === 'development';
   }
 
-    // Gets Client domain
-    getAppDomain(): string {
-      return this._config["APP_DOMAIN"];
-    }
+  // Gets Client domain
+  getAppDomain(): string {
+    return this._config['APP_DOMAIN'];
+  }
 
   // Gets API domain
   getApiDomain(): string {
-    return this._config["API_DOMAIN"];
+    return this._config['API_DOMAIN'];
   }
 
-    // Gets API base route
-    getApiBaseUrl(): string {
-      return this._config["API_BASE_URL"];
-    }
+  // Gets API base route
+  getApiBaseUrl(): string {
+    return this._config['API_BASE_URL'];
+  }
 
-    // Gets API route based on the provided key
-    getApiEndpoint(key: string): string {
-      return this._config["API_ENDPOINTS"][key];
-    }
+  // Gets API route based on the provided key
+  getApiEndpoint(key: string): string {
+    return this._config['API_ENDPOINTS'][key];
+  }
 
   // Gets a value of specified property in the configuration file
   get(key: any) {
@@ -61,7 +62,7 @@ export class ConfigurationService {
 }
 
 export function ConfigFactory(config: ConfigurationService) {
-  return () => config.load()
+  return () => config.load();
 }
 
 export function init() {
@@ -70,11 +71,11 @@ export function init() {
       useFactory: ConfigFactory,
       deps: [ConfigurationService],
       multi: true
-  }
+  };
 }
 
 const ConfigModule = {
   init: init
-}
+};
 
 export { ConfigModule };

@@ -15,10 +15,15 @@ export class UserService {
   private apiAccountsEndpoint: string;
 
 
-  constructor(private http: HttpClient, private configService: ConfigurationService) {
+  constructor(
+    private http: HttpClient,
+    private configService: ConfigurationService) {
     this.apiUrl = configService.getApiBaseUrl();
     this.apiUserEndpoint = `${this.apiUrl}${this.configService.getApiEndpoint('USER')}`;
     this.apiAccountsEndpoint = `${this.apiUrl}${this.configService.getApiEndpoint('ACCOUNTS')}`;
+    console.log(this.apiUrl);
+    console.log(this.apiUserEndpoint);
+    console.log(this.apiAccountsEndpoint);
   }
 
 

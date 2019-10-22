@@ -44,6 +44,10 @@
   &--space-between {
     justify-content: space-between;
   }
+
+  &--space-around {
+    justify-content: space-around;
+  }
 }
 
 .w {
@@ -78,6 +82,12 @@
 
 .d-none {
   display: none;
+}
+
+.t {
+  &--bold {
+    font-weight: 600;
+  }
 }
 
 p {

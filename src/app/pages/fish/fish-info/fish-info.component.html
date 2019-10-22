@@ -1,13 +1,13 @@
 <section class="fish-id">
-  <h1 class="title"> {{fish.name}}</h1>
+  <h1 class="title"> {{fish?.name}}</h1>
   <figure class="fish-id-item row">
     <!-- <div class="img-box"> -->
       <img class="img"
-           [src]="fish.img || defaultFishImg"
-           [alt]="fish.name">
+           [src]="fish?.img || defaultFishImg"
+           [alt]="fish?.name">
     <!-- </div> -->
     <figcaption class="text">
-        {{fish.description}}
+        {{fish?.description}}
     </figcaption>
   </figure>
 </section>

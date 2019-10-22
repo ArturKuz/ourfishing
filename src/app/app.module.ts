@@ -36,6 +36,7 @@ import { SuccessComponent } from './ui/dialogs/success/success.component';
 import { SuccessService } from './services/success.service';
 import { FishComponent } from './pages/fish/fish.component';
 import { FishInfoComponent } from './pages/fish/fish-info/fish-info.component';
+import { FishService } from './services/fish.service';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { FishInfoComponent } from './pages/fish/fish-info/fish-info.component';
     SuccessService,
     AuthenticationService,
     UserService,
+    FishService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

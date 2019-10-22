@@ -10,16 +10,17 @@ import { FishingComponent } from './pages/fishing/fishing.component';
 import { EventsComponent } from './pages/events/events.component';
 import { FishComponent } from './pages/fish/fish.component';
 import { FishInfoComponent } from './pages/fish/fish-info/fish-info.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component:  HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegisterComponent },
-  { path: 'profile/:id', component: ProfileComponent },
-  { path: 'fishing', component: FishingComponent },
-  { path: 'events', component: EventsComponent },
-  { path: 'fish', component: FishComponent },
-  { path: 'fish/:id', component: FishInfoComponent },
+  { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'fishing', component: FishingComponent, canActivate: [AuthGuard] },
+  { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
+  { path: 'fish', component: FishComponent, canActivate: [AuthGuard] },
+  { path: 'fish/:id', component: FishInfoComponent, canActivate: [AuthGuard] },
 
 
   { path: '**', component: NotFoundComponent }

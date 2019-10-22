@@ -1,11 +1,15 @@
 <section class="fish">
   <h1 class="title">Справочник</h1>
   <ul class="fish-list">
-    <li class="fish-item row justify--center"
-        *ngFor="let fish of fishes">
-        <a class="w--30" routerLink="/fish/{{fish.id}}">{{fish.name}}</a>
-        <span class="w--30">info</span>
-        <span class="w--30">info</span>
-  </li>
+    <li class="fish-item row justify--space-around t--bold">
+      <span class="w--30">Имя</span>
+      <span class="w--30">Фото</span>
+    </li>
+    <li class="fish-item row justify--space-around"
+        *ngFor="let fish of fishList">
+      <a class="w--30" routerLink="/fish/{{fish.id}}">{{fish.name}}</a>
+      <span *ngIf="fish.image" class="w--30">+</span>
+      <span *ngIf="!fish.image" class="w--30">-</span>
+    </li>
   </ul>
 </section>
