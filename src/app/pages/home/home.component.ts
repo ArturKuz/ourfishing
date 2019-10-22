@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services';
+import { HeadersSizeService } from 'src/app/services/headers-size.service';
 
 @Component({
   selector: 'app-home',
@@ -11,18 +12,35 @@ import { AuthenticationService } from 'src/app/services';
 export class HomeComponent implements OnInit {
 
     loading;
-    // currentUser: User;
-    // users: User[] = [];
+    height;
+    headerHeight;
+    menuHeight;
 
-    constructor( ) { }
+    @HostListener('window:resize', ['$event'])
+      onResize(event) {
+      this.headersSize.windowInnerHeight = event.target.innerHeight;
+    }
+
+    constructor(
+      private headersSize: HeadersSizeService) {
+        this.headersSize.windowInnerHeight = window.innerHeight;
+      }
 
   ngOnInit() {
 
     this.loading = false;
-    // test spiner
-    //   setTimeout(() => {
-    //     this.loading = false;
-    //   }, 2000);
+    this.headerHeight = this.headersSize.mainHeaderHeight;
+    this.menuHeight = this.headersSize.navMenuHeight;
+    this.headersSize.windowHeight.subscribe(
+      res => {
+        // console.log('res', res),
+        this.height = res - this.headerHeight - this.menuHeight + 'px';
+      }
+    );
+  }
+
+  calcHeight() {
+
   }
 }
 

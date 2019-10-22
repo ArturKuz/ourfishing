@@ -10,13 +10,13 @@ import { interval } from 'rxjs';
     (click)="scrolling()"
     [@upAndDown]="isUp ? 'up' : 'down'">
   </div> `,
-  styles:[`
+  styles: [`
   .arrow-for-scroll {
     position: absolute;
     bottom: 75px;
     left: calc(50% - 10px);
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     border-right: 4px solid #eee;
     border-bottom: 4px solid #eee;
     cursor: pointer;
@@ -52,10 +52,10 @@ export class ArrowComponent implements OnInit {
   }
 
   scrolling() {
-    let {x} = this.arrow.nativeElement.getBoundingClientRect()
+    const {x} = this.arrow.nativeElement.getBoundingClientRect();
     window.scrollTo({
       top: x,
       behavior: 'smooth',
-    })
+    });
   }
 }

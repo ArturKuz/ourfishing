@@ -37,6 +37,7 @@ import { SuccessService } from './services/success.service';
 import { FishComponent } from './pages/fish/fish.component';
 import { FishInfoComponent } from './pages/fish/fish-info/fish-info.component';
 import { FishService } from './services/fish.service';
+import { HeadersSizeService } from './services/headers-size.service';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { FishService } from './services/fish.service';
     AuthenticationService,
     UserService,
     FishService,
+    HeadersSizeService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 

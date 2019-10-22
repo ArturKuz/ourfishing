@@ -32,10 +32,10 @@ export class SliderComponent implements OnInit {
     { name: 'summer', url: 'assets/img/slider/summer.jpg', },
     { name: 'food', url: 'assets/img/slider/food.jpg', },
     { name: 'plate', url: 'assets/img/slider/plate.jpg', },
-  ]
+  ];
   // -----------------
 
-  slides=this.sliderImg;
+  slides = this.sliderImg;
 
   constructor() { }
 

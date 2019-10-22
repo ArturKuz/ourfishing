@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services';
+import { HeadersSizeService } from 'src/app/services/headers-size.service';
 
 
 @Component({
@@ -10,13 +11,14 @@ import { AuthenticationService } from 'src/app/services';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
+  @ViewChild('mainHeader') mainHeader: ElementRef;
   isLoggedIn;
   subscription;
 
   constructor(
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private headersSize: HeadersSizeService,
   ) { }
 
   ngOnInit() {
@@ -24,6 +26,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscription = this.authService.isLoggedIn.subscribe( res => {
       this.isLoggedIn = res;
     });
+
+    const {height} = this.mainHeader.nativeElement.getBoundingClientRect();
+    this.headersSize.mainHeaderHeight = height;
   }
 
   ngOnDestroy(): void {
