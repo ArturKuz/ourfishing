@@ -38,6 +38,7 @@ import { FishComponent } from './pages/fish/fish.component';
 import { FishInfoComponent } from './pages/fish/fish-info/fish-info.component';
 import { FishService } from './services/fish.service';
 import { HeadersSizeService } from './services/headers-size.service';
+import { PaginatorComponent } from './ui/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { HeadersSizeService } from './services/headers-size.service';
     SuccessComponent,
     FishComponent,
     FishInfoComponent,
+    PaginatorComponent,
   ],
   imports: [
     BrowserModule,

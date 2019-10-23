@@ -17,8 +17,8 @@ import { interval } from 'rxjs';
     left: calc(50% - 10px);
     width: 25px;
     height: 25px;
-    border-right: 4px solid #eee;
-    border-bottom: 4px solid #eee;
+    border-right: 2px solid green;
+    border-bottom: 2px solid green;
     cursor: pointer;
     transform: rotate(45deg);
     }

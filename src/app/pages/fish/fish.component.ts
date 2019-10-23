@@ -8,31 +8,30 @@ import { FishService } from 'src/app/services/fish.service';
 })
 export class FishComponent implements OnInit {
 
-  // fishes = [
-  //   {name: 'Карась', id: '1'},
-  //   {name: 'Окунь', id: '2'},
-  //   {name: 'Щука', id: '5'},
-  //   {name: 'Плотва', id: '6'},
-  //   {name: 'Сом', id: '8'},
-  // ];
-
   fishList;
-  subscription;
-  initPage = 1;
+  pageIndex = 1;
+  pageSizeOptions: number[] = [5, 10, 20];
   totalPages;
 
 
   constructor(private fishService: FishService) { }
 
   ngOnInit() {
-    this.subscription = this.fishService.getFishList(1, 10).subscribe(
+    this.requestFishList(this.pageIndex, this.pageSizeOptions[0]);
+  }
+
+  requestPage(paginatorData) {
+    const {pageIndex, pageSize} = paginatorData;
+    this.requestFishList(pageIndex + 1,  pageSize);
+  }
+
+  requestFishList(index, size) {
+    this.fishService.getFishList(index, size).subscribe(
       res => {
-        //  console.log(res);
          this.fishList = res.data;
          this.totalPages = res.totalCount;
       },
       error => console.log(error),
     );
   }
-
 }

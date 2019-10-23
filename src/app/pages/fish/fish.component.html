@@ -12,4 +12,9 @@
       <span *ngIf="!fish.image" class="w--30">-</span>
     </li>
   </ul>
+
+  <app-paginator [length]="totalPages"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (paginatorEvent)="requestPage($event)"></app-paginator>
 </section>
