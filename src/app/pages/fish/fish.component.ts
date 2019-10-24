@@ -30,6 +30,7 @@ export class FishComponent implements OnInit {
       res => {
          this.fishList = res.data;
          this.totalPages = res.totalCount;
+        //  console.log(res);
       },
       error => console.log(error),
     );

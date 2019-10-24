@@ -1,6 +1,19 @@
-<div class="profile row justify--center align--center">
-  <form class="form col" [formGroup]="fisherForm" (ngSubmit)="onSubmit()">
-
+<div class="profile row wrap">
+  <h1 class="title w--100">Мой профиль</h1>
+  <section class="wrapper row justify--center w--40">
+    <div class="avatar"
+        [style.backgroundImage]="'url(' + (userAvatar || noAvatar) + ')'">
+      <input class="d-none" type="file" (change)="onChange($event)" #inputFile>
+      <div class="btn-box col align--center justify--center" *ngIf="!userAvatar">
+        <button class="avatar-btn" (click)="inputFile.click()">Загрузить</button>
+      </div>
+      <div class="btn-box col align--center justify--center" *ngIf="userAvatar">
+          <button class="avatar-btn" (click)="inputFile.click()">Изменить</button>
+          <button class="avatar-btn line-top">Удалить</button>
+      </div>
+    </div>
+  </section>
+  <form class="form col w--30" [formGroup]="fisherForm" (ngSubmit)="onSubmit()">
     <div class="input-group row wrap align--baseline" *ngFor="let item of profileInputs">
       <label class="label" [for]="item.input"> {{item?.name}} </label>
       <input class="input"

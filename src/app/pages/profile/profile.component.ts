@@ -15,7 +15,8 @@ import { SuccessService } from 'src/app/services/success.service';
 export class ProfileComponent implements OnInit {
 
   profileInputs = PROFILE_INPUTS;
-
+  userAvatar = 'assets/img/d-fish.png';
+  noAvatar = 'assets/img/noavatar.png';
   regexpName = new RegExp('^[а-яА-Я]+$');
   regexpPhone = new RegExp('^\\+[1-9]{1}[0-9]{3,14}$');
   fisherForm: FormGroup;
@@ -91,4 +92,15 @@ export class ProfileComponent implements OnInit {
         });
   }
 
+  onChange(event) {
+    console.log( event.target.files[0]);
+
+    const reader = new FileReader();
+
+    // reader.onload = e => {
+      // this.isUpdateAvatar = true;
+      // console.log(e);
+      // this.userAvatar = reader.result;
+    // }
+  }
 }
