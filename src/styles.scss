@@ -54,18 +54,23 @@
   &--100 {
     width: 100%;
   }
+
   &--70 {
     width: 70%;
   }
+
   &--60 {
     width: 60%;
   }
+
   &--50 {
     width: 50%;
   }
+
   &--40 {
     width: 40%;
   }
+
   &--30 {
     width: 30%;
   }
@@ -100,8 +105,10 @@ p {
   }
 }
 
-a, a:active, a:visited {
-  color: #000;
+a,
+a:active,
+a:visited {
+  color : #000;
   cursor: pointer;
 }
 

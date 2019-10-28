@@ -3,13 +3,13 @@
   <section class="wrapper row justify--center w--40">
     <div class="avatar"
         [style.backgroundImage]="'url(' + (userAvatar || noAvatar) + ')'">
-      <input class="d-none" type="file" (change)="onChange($event)" #inputFile>
+      <input class="d-none" type="file" accept=".png, .jpg, .jpeg" (change)="onChange($event)" #inputFile>
       <div class="btn-box col align--center justify--center" *ngIf="!userAvatar">
         <button class="avatar-btn" (click)="inputFile.click()">Загрузить</button>
       </div>
       <div class="btn-box col align--center justify--center" *ngIf="userAvatar">
           <button class="avatar-btn" (click)="inputFile.click()">Изменить</button>
-          <button class="avatar-btn line-top">Удалить</button>
+          <button class="avatar-btn line-top" (click)="onDeleteAvatar()">Удалить</button>
       </div>
     </div>
   </section>

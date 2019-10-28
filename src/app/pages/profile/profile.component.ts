@@ -15,7 +15,8 @@ import { SuccessService } from 'src/app/services/success.service';
 export class ProfileComponent implements OnInit {
 
   profileInputs = PROFILE_INPUTS;
-  userAvatar = 'assets/img/d-fish.png';
+  userAvatar;
+  selectedFile: File;
   noAvatar = 'assets/img/noavatar.png';
   regexpName = new RegExp('^[а-яА-Я]+$');
   regexpPhone = new RegExp('^\\+[1-9]{1}[0-9]{3,14}$');
@@ -31,6 +32,10 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    setTimeout(() => {
+      this.userAvatar = 'assets/img/d-fish.png';
+    }, 3000);
 
     this.userId = this.route.snapshot.paramMap.get('id');
 
@@ -93,14 +98,36 @@ export class ProfileComponent implements OnInit {
   }
 
   onChange(event) {
-    console.log( event.target.files[0]);
+    // console.log( event);
+    this.selectedFile = event.target.files[0] as File;
+    if (this.selectedFile) {
+      this.preview(this.selectedFile);
+    }
+    // this.userAvatar;
+  }
+
+  onUploadAvatar() {
+    const formdata = new FormData();
+    formdata.append('avatar', this.selectedFile, this.selectedFile.name);
+  }
+
+  onDeleteAvatar() {
+    this.userAvatar = '';
+  }
+
+  preview(file) {
+    // console.log(file);
+
+    if (file.type.match(/image\/*/) == null) {
+      console.log('Only images are supported.');
+      return;
+    }
 
     const reader = new FileReader();
-
-    // reader.onload = e => {
-      // this.isUpdateAvatar = true;
-      // console.log(e);
-      // this.userAvatar = reader.result;
-    // }
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      // console.log(event);
+      this.userAvatar = reader.result;
+    };
   }
 }

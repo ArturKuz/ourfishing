@@ -1,6 +1,6 @@
 .profile {
 
-  .wrapper{
+  .wrapper {
     padding: 2rem 0;
   }
 
@@ -10,24 +10,26 @@
   }
 
   .btn-box {
-    height: 100%;
+    height       : 100%;
     border-radius: 50%;
-    display: none;
-    background: transparent;
+    display      : none;
+    background   : transparent;
+
     &:hover {
-      background-color:rgba($color: #000000, $alpha: 0.4);
+      background-color: rgba($color: #000000, $alpha: 0.4);
     }
   }
 
   .avatar-btn {
-    color: #fff;
+    color     : #fff;
     background: transparent;
-    border: none;
-    outline: none;
-    width: 100%;
-    padding: 0;
-    height: 40%;
-    cursor: pointer;
+    border    : none;
+    outline   : none;
+    width     : 100%;
+    padding   : 0;
+    height    : 40%;
+    cursor    : pointer;
+
     &:hover {
       font-weight: 600;
     }
@@ -38,13 +40,14 @@
   }
 
   .avatar {
-    width           : 180px;
-    height          : 180px;
-    border-radius   : 50%;
+    width              : 180px;
+    height             : 180px;
+    border-radius      : 50%;
     // background-color: #ccc;
-    background-repeat: no-repeat;
+    background-repeat  : no-repeat;
     background-position: 50%;
-    background-size: 80%;
+    background-size    : 80%;
+
     &:hover>.btn-box {
       display: flex;
     }
