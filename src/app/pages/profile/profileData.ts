@@ -17,8 +17,8 @@ export const PROFILE_INPUTS = [
     input: 'phoneNumber',
     name: 'Телефон',
     type: 'text',
-    placeholder: '+ ...',
-    errorPattern: ' Только цифры, без пробелов'
+    placeholder: '+ 375 29 ХХХХХХХ',
+    errorPattern: ' Только цифры, без пробелов, начните номер со знака +'
   },
   {
     input: 'email',

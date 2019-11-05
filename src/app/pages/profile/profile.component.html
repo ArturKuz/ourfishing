@@ -30,6 +30,9 @@
         <span class="input-invalid" *ngIf="formFields[item.input].errors.email">
             {{item?.errorEmail}}
         </span>
+        <span class="input-invalid" *ngIf="formFields[item.input].errors.required">
+          Это обязательное поле
+      </span>
       </div>
     </div>
 

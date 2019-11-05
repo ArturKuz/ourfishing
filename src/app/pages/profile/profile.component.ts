@@ -33,9 +33,9 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
-    setTimeout(() => {
-      this.userAvatar = 'assets/img/d-fish.png';
-    }, 3000);
+    // setTimeout(() => {
+    //   this.userAvatar = 'assets/img/d-fish.png';
+    // }, 3000);
 
     this.userId = this.route.snapshot.paramMap.get('id');
 
@@ -102,13 +102,18 @@ export class ProfileComponent implements OnInit {
     this.selectedFile = event.target.files[0] as File;
     if (this.selectedFile) {
       this.preview(this.selectedFile);
+      this.onUploadAvatar(this.selectedFile);
     }
     // this.userAvatar;
   }
 
-  onUploadAvatar() {
+  onUploadAvatar(file) {
     const formdata = new FormData();
-    formdata.append('avatar', this.selectedFile, this.selectedFile.name);
+    formdata.append('avatar', file);
+    this.userService.uploadUserAvatar(formdata).subscribe (
+      res => console.log(res),
+      error => console.log(error),
+    );
   }
 
   onDeleteAvatar() {

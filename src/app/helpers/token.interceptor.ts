@@ -14,12 +14,13 @@ export class TokenInterceptor implements HttpInterceptor {
 
     const currentUser = this.authService.currentUserValue;
     let clonedRequest;
+    console.log(req);
 
     if (currentUser) {
       clonedRequest = req.clone({
         setHeaders: {
           Authorization: `Bearer ${currentUser.authToken}`,
-          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/json',
         }
       });
     } else {
