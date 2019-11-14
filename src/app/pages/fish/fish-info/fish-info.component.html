@@ -6,8 +6,7 @@
            [src]="fish?.image || defaultFishImg"
            [alt]="fish?.name">
     <!-- </div> -->
-    <figcaption class="text">
-        {{fish?.description}}
+    <figcaption class="text" [innerHTML]="fish?.description">
     </figcaption>
   </figure>
 </section>
