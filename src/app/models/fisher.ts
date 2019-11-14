@@ -1,15 +1,8 @@
 export interface Fisher {
+  firstName: string;
+  lastName: string;
   avatarUrl?: string;
+  phoneNumber: string;
   email: string;
-  firstName: string;
   id?: number;
-  lastName: string;
-  phoneNumber: string;
-}
-
-export interface UpdateFisher {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  email: string;
 }

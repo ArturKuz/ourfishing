@@ -14,7 +14,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     const currentUser = this.authService.currentUserValue;
     let clonedRequest;
-    console.log(req);
+    // console.log(req);
 
     if (currentUser) {
       clonedRequest = req.clone({

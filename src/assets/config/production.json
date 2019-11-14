@@ -6,6 +6,7 @@
     "API_ENDPOINTS": {
         "USER": "FisherProfile",
         "ACCOUNTS": "Accounts",
-        "FISH": "Fish"
+        "FISH": "Fish",
+        "AVATAR": "Avatar"
     }
 }

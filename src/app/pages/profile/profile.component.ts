@@ -15,15 +15,16 @@ import { SuccessService } from 'src/app/services/success.service';
 export class ProfileComponent implements OnInit {
 
   profileInputs = PROFILE_INPUTS;
-  userAvatar;
-  selectedFile: File;
+  userAvatar: any;
+  userId: number;
+  isAvatartSaved = true;
+  selectedFile;
+  fisherForm: FormGroup;
   noAvatar = 'assets/img/noavatar.png';
   regexpName = new RegExp('^[а-яА-Я]+$');
   regexpPhone = new RegExp('^\\+[1-9]{1}[0-9]{3,14}$');
-  fisherForm: FormGroup;
 
   submitted = false;
-  userId;
 
   constructor(
     private userService: UserService,
@@ -33,11 +34,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
-    // setTimeout(() => {
-    //   this.userAvatar = 'assets/img/d-fish.png';
-    // }, 3000);
-
-    this.userId = this.route.snapshot.paramMap.get('id');
+    this.userId = +this.route.snapshot.paramMap.get('id');
 
     this.fisherForm = new FormGroup({
       email: new FormControl('', [Validators.email]),
@@ -49,36 +46,20 @@ export class ProfileComponent implements OnInit {
     this.getFisher();
   }
 
-  getFisher() {
-    this.userService.getById(this.userId)
-    .subscribe(res => {
-      const data = res['data'];
+  get formFields() {
+    return this.fisherForm.controls;
+  }
 
-      this.fisherForm.patchValue(this.updateFormValue(data));
-      console.log(this.fisherForm);
+  getFisher(): void {
+    this.userService.getById()
+    .subscribe(res => {
+      this.fisherForm.patchValue(res.data);
+      this.userAvatar = res.data.avatarUrl;
     });
   }
 
-  updateFormValue(data) {
-    console.log(data);
-    const {email, firstName, lastName, phoneNumber} = data;
-    const obj = {
-      email,
-      firstName,
-      lastName,
-      phoneNumber
-    };
-    return obj;
-  }
 
-  // changeDateFormat() {
-  //   const birthday = this.fisherForm.controls.birthday;
-  //   this.fisherForm.controls.birthday = moment(birthday).format('dd/mm/yyyy');
-  // }
-
-  get formFields() { return this.fisherForm.controls; }
-
-  onSubmit() {
+  onSubmit(): void {
 
     this.submitted = true;
 
@@ -86,7 +67,7 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
-    this.userService.update(this.fisherForm.value, this.userId)
+    this.userService.update(this.fisherForm.value)
       .subscribe(
         res => {
           this.getFisher();
@@ -97,33 +78,49 @@ export class ProfileComponent implements OnInit {
         });
   }
 
-  onChange(event) {
-    // console.log( event);
+  onChange(event): void {
     this.selectedFile = event.target.files[0] as File;
     if (this.selectedFile) {
       this.preview(this.selectedFile);
-      this.onUploadAvatar(this.selectedFile);
+      this.isAvatartSaved = false;
     }
-    // this.userAvatar;
   }
 
-  onUploadAvatar(file) {
+  uploadAvatar(file): void {
     const formdata = new FormData();
-    formdata.append('avatar', file);
+    formdata.append('file', file);
     this.userService.uploadUserAvatar(formdata).subscribe (
-      res => console.log(res),
+      res => this.successService.openSuccessPopUp('Данные сохранены'),
       error => console.log(error),
     );
   }
 
+  deleteAvatar() {
+    this.userService.deleteUserAvatar().subscribe(
+      res => this.successService.openSuccessPopUp('Данные сохранены'),
+      error => console.log(error),
+    );
+  }
+
+  onSaveAvatar() {
+    if (this.selectedFile) {
+      this.uploadAvatar(this.selectedFile);
+    } else {
+      this.deleteAvatar();
+    }
+    this.isAvatartSaved = true;
+  }
+
   onDeleteAvatar() {
+    this.isAvatartSaved = false;
     this.userAvatar = '';
+    this.selectedFile = null;
   }
 
   preview(file) {
-    // console.log(file);
 
     if (file.type.match(/image\/*/) == null) {
+      this.successService.openSuccessPopUp('Загрузить можно только изображение');
       console.log('Only images are supported.');
       return;
     }
@@ -131,7 +128,6 @@ export class ProfileComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (event) => {
-      // console.log(event);
       this.userAvatar = reader.result;
     };
   }

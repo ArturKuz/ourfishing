@@ -4,8 +4,9 @@
     "API_DOMAIN": "http://localhost:5000",
     "API_BASE_URL": "http://localhost:5000/api/",
     "API_ENDPOINTS": {
-        "USER": "FisherProfile",
+        "USER": "FisherProfile/",
         "ACCOUNTS": "Accounts",
-        "FISH": "Fish"
+        "FISH": "Fish",
+        "AVATAR": "Avatar"
     }
 }
