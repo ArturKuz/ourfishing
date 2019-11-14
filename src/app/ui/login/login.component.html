@@ -24,7 +24,9 @@
         <a [routerLink]="['/registration']" class="btn ">Зарегистрироваться</a>
         <p> Войти с помощью</p>
         <div class="social-group row justify--center">
-          <a class="link icon--md" [inlineSVG]="'./assets/svg/facebookBtn.svg'"></a>
+          <a class="link icon--md"
+             [inlineSVG]="'./assets/svg/facebookBtn.svg'"
+             (click)="loginWithFB()"></a>
           <a class="link icon--md"  [inlineSVG]="'./assets/svg/vkBtn.svg'"></a>
         </div>
       </div>

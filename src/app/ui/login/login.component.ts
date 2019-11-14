@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services';
 import { LOGIN_INPUTS } from './loginData';
+import { FacebookApiService } from 'src/app/services/facebook.service';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private authenticationService: AuthenticationService,
+    private fbService: FacebookApiService
   ) { }
 
   ngOnInit() {
@@ -35,7 +37,6 @@ export class LoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    console.log(this.route.snapshot);
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
@@ -65,6 +66,10 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         }
       );
+  }
+
+  loginWithFB() {
+    this.fbService.loginWithFacebook();
   }
 
   goBack(): void {
