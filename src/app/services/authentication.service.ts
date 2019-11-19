@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from './../models/user';
+import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { ConfigurationService } from './configuration.service';
+import { Login } from '../models/login';
+
 
 
 @Injectable({
@@ -12,21 +14,47 @@ import { map } from 'rxjs/operators';
 export class AuthenticationService {
 
   isLoggedIn = new BehaviorSubject(false);
-  private apiUrl = 'http://localhost:5000/api/Auth/login';
+
+  private apiUrl: string;
+  private apiFBEndpoint: string;
+  private apiLoginEndpoint: string;
   private currentUser = JSON.parse(localStorage.getItem('@our-fishing:currentUser')) || {};
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private configService: ConfigurationService) {
+
+  }
 
   login( data ) {
-    return this.http.post<any>(`${this.apiUrl}`, data)
-      .pipe(map(user => {
-        console.log('user', user.token);
-        if (user && user.token.authToken) {
-          this.setLoginState(true);
-          this.currentUserValue = user.token;
-        }
-        return user;
+    this.getEndpoints();
+    return this.http.post<Login>(this.apiLoginEndpoint, data)
+      .pipe(map(res => {
+        this.setUserToStorage(res);
+        return res;
       }));
+  }
+
+  externalAuth(token: string) {
+    this.getEndpoints();
+    return this.http.post<Login>( this.apiFBEndpoint, {accessToken: token})
+    .pipe(map(res => {
+      this.setUserToStorage(res);
+      return res;
+    }));
+  }
+
+  getEndpoints() {
+    this.apiUrl = this.configService.getApiBaseUrl();
+    this.apiLoginEndpoint = `${this.apiUrl}${this.configService.getApiEndpoint('LOGIN')}`;
+    this.apiFBEndpoint = `${this.apiUrl}${this.configService.getApiEndpoint('FACEBOOK')}`;
+  }
+
+  setUserToStorage(res: Login) {
+    if (res && res.token.authToken) {
+      this.setLoginState(true);
+      this.currentUserValue = res.token;
+    }
   }
 
   logout() {

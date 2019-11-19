@@ -8,9 +8,11 @@ export class HeadersSizeService {
 
   private _mainHeaderHeight;
   private _navMenuHeight;
-  windowHeight = new BehaviorSubject<number>(null);
+  public windowHeight;
 
-  constructor() { }
+  constructor() {
+    this.windowHeight = new BehaviorSubject<number>(window.innerHeight);
+   }
 
   set mainHeaderHeight(height) {
     this._mainHeaderHeight = height;

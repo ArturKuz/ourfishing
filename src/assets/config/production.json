@@ -5,8 +5,10 @@
     "API_BASE_URL": "http://localhost:5000/api/",
     "API_ENDPOINTS": {
         "USER": "FisherProfile",
+        "LOGIN":"Auth/login",
         "ACCOUNTS": "Accounts",
         "FISH": "Fish",
-        "AVATAR": "Avatar"
+        "AVATAR": "Avatar",
+        "FACEBOOK": "ExternalAuth/Facebook"
     }
 }

@@ -2,7 +2,6 @@ import { Injectable, APP_INITIALIZER } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +17,7 @@ export class ConfigurationService {
         this._env = 'production';
         console.log(this._env);
       }
-      this.http.get<any>('./assets/config/' + this._env + '.json')
+      this.http.get<any>('/assets/config/' + this._env + '.json')
         .subscribe((data) => {
           this._config = data;
           resolve(true);
@@ -75,7 +74,7 @@ export function init() {
 }
 
 const ConfigModule = {
-  init: init
+  init
 };
 
 export { ConfigModule };

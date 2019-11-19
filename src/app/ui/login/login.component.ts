@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/services';
 import { LOGIN_INPUTS } from './loginData';
 import { FacebookApiService } from 'src/app/services/facebook.service';

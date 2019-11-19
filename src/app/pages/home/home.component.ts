@@ -23,24 +23,18 @@ export class HomeComponent implements OnInit {
 
     constructor(
       private headersSize: HeadersSizeService) {
-        this.headersSize.windowInnerHeight = window.innerHeight;
-      }
+    }
 
   ngOnInit() {
 
     this.loading = false;
     this.headerHeight = this.headersSize.mainHeaderHeight;
-    this.menuHeight = this.headersSize.navMenuHeight;
+    this.menuHeight = this.headersSize.navMenuHeight || 0;
     this.headersSize.windowHeight.subscribe(
       res => {
-        // console.log('res', res),
         this.height = res - this.headerHeight - this.menuHeight + 'px';
       }
     );
-  }
-
-  calcHeight() {
-
   }
 }
 
