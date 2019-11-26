@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
-import { UserService, AuthenticationService, ErrorService } from '../../services';
+import { UserService, AuthenticationService, MessageService } from '../../services';
 import { REG_INPUTS } from './registrationData';
 
 @Component({
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private authService: AuthenticationService,
     private userService: UserService,
-    private errorService: ErrorService,
+    private messageService: MessageService,
     private location: Location,
   ) { }
 
@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
     }
 
     if (this.authService.currentUserValue.authToken) {
-      this.errorService.openErrorDialog('Вы уже зарегистрированы');
+      this.messageService.openPopUp('Вы уже зарегистрированы');
       return;
     }
 
@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
           this.loading = false;
         },
         () => {
-          console.log('Complite!!!');
+          console.log('Complite!');
           this.loading = false;
         }
       );

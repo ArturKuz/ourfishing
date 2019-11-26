@@ -28,12 +28,9 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArrowComponent } from './ui/arrow/arrow.component';
 import { ProgressComponent } from './ui/progress/progress.component';
-import { ErrorComponent } from './ui/dialogs/error/error.component';
-import { ErrorService, AuthenticationService, UserService } from './services';
+import { MessageService, AuthenticationService, UserService } from './services';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { TokenInterceptor } from './helpers/token.interceptor';
-import { SuccessComponent } from './ui/dialogs/success/success.component';
-import { SuccessService } from './services/success.service';
 import { FishComponent } from './pages/fish/fish.component';
 import { FishInfoComponent } from './pages/fish/fish-info/fish-info.component';
 import { FishService } from './services/fish.service';
@@ -41,6 +38,7 @@ import { HeadersSizeService } from './services/headers-size.service';
 import { PaginatorComponent } from './ui/paginator/paginator.component';
 import { FacebookModule } from 'ngx-facebook';
 import { FacebookApiService } from './services/facebook.service';
+import { MessagePopupComponent } from './ui/dialogs/message-popup/message-popup.component';
 
 @NgModule({
   declarations: [
@@ -60,11 +58,10 @@ import { FacebookApiService } from './services/facebook.service';
     EventsComponent,
     ArrowComponent,
     ProgressComponent,
-    ErrorComponent,
-    SuccessComponent,
     FishComponent,
     FishInfoComponent,
     PaginatorComponent,
+    MessagePopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,15 +82,13 @@ import { FacebookApiService } from './services/facebook.service';
     FacebookModule.forRoot()
   ],
   entryComponents: [
-    ErrorComponent,
-    SuccessComponent,
+    MessagePopupComponent,
   ],
   providers: [
     ConfigurationService,
     ConfigModule.init(),
     AuthGuard,
-    ErrorService,
-    SuccessService,
+    MessageService,
     AuthenticationService,
     UserService,
     FishService,

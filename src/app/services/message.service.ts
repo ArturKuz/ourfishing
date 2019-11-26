@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
-import { ErrorComponent } from '../ui/dialogs/error/error.component';
+import { MessagePopupComponent } from '../ui/dialogs/message-popup/message-popup.component';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class ErrorService {
+export class MessageService {
 
   durationInSeconds = 3;
 
   constructor(private snackBar: MatSnackBar) { }
 
-  openErrorDialog(error) {
-    this.snackBar.openFromComponent(ErrorComponent, {
+  openPopUp(message) {
+    this.snackBar.openFromComponent(MessagePopupComponent, {
       duration: this.durationInSeconds * 1000,
-      data: {error},
+      data: message,
     });
-  }
-}
+  }}

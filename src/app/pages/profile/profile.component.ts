@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import * as moment from 'moment';
+import { ActivatedRoute } from '@angular/router';
 import { PROFILE_INPUTS } from './profileData';
-import { SuccessService } from 'src/app/services/success.service';
+import { MessageService } from 'src/app/services/message.service';
 
 
 @Component({
@@ -29,7 +28,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private successService: SuccessService,
+    private messageService: MessageService,
   ) { }
 
   ngOnInit() {
@@ -71,7 +70,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         res => {
           this.getFisher();
-          this.successService.openSuccessPopUp('Данные сохранены');
+          this.messageService.openPopUp('Данные сохранены');
         },
         error => {
           console.log(error);
@@ -90,14 +89,14 @@ export class ProfileComponent implements OnInit {
     const formdata = new FormData();
     formdata.append('file', file);
     this.userService.uploadUserAvatar(formdata).subscribe (
-      res => this.successService.openSuccessPopUp('Данные сохранены'),
+      res => this.messageService.openPopUp('Данные сохранены'),
       error => console.log(error),
     );
   }
 
   deleteAvatar() {
     this.userService.deleteUserAvatar().subscribe(
-      res => this.successService.openSuccessPopUp('Данные сохранены'),
+      res => this.messageService.openPopUp('Данные сохранены'),
       error => console.log(error),
     );
   }
@@ -120,7 +119,7 @@ export class ProfileComponent implements OnInit {
   preview(file) {
 
     if (file.type.match(/image\/*/) == null) {
-      this.successService.openSuccessPopUp('Загрузить можно только изображение');
+      this.messageService.openPopUp('Загрузить можно только изображение')
       console.log('Only images are supported.');
       return;
     }
