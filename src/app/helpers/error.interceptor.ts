@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AuthenticationService, MessageService } from '../services';
+import { AuthenticationService, AlertService } from '../services';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(
       private authService: AuthenticationService,
-      private messageService: MessageService,
+      private alertService: AlertService,
       private router: Router,
       ) {}
 
@@ -26,7 +26,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             err.message ? error = err.message :
             err.statusText ? error = err.statusText : error = 'Unknown error';
 
-            this.messageService.openPopUp(error);
+            this.alertService.error(error);
             return throwError(err);
         }));
     }

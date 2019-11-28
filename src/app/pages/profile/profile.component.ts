@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services';
+import { UserService, AlertService } from 'src/app/services';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PROFILE_INPUTS } from './profileData';
-import { MessageService } from 'src/app/services/message.service';
 import { Location } from '@angular/common';
 
 
@@ -29,8 +28,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private messageService: MessageService,
     private location: Location,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -72,7 +71,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         res => {
           this.getFisher();
-          this.messageService.openPopUp('Данные сохранены');
+          this.alertService.success('Данные сохранены');
         },
         error => {
           console.log(error);
@@ -92,7 +91,7 @@ export class ProfileComponent implements OnInit {
     const formdata = new FormData();
     formdata.append('file', file);
     this.userService.uploadUserAvatar(formdata).subscribe (
-      res => this.messageService.openPopUp('Данные сохранены'),
+      res => this.alertService.success('Данные сохранены'),
       error => console.log(error),
     );
   }
@@ -100,10 +99,14 @@ export class ProfileComponent implements OnInit {
   deleteAvatar() {
     this.userService.deleteUserAvatar().subscribe(
       res => {
-        this.messageService.openPopUp('Данные сохранены');
+        this.alertService.success('Данные сохранены');
         this.clearAvatarData();
       },
-      error => console.log(error),
+      error => {
+        console.log(error);
+        this.alertService.error('Данные не сохранены');
+      },
+
     );
   }
 
@@ -125,7 +128,7 @@ export class ProfileComponent implements OnInit {
   preview(file) {
 
     if (file.type.match(/image\/*/) == null) {
-      this.messageService.openPopUp('Загрузить можно только изображение');
+      this.alertService.warning('Загрузить можно только изображение');
       console.log('Only images are supported.');
       return;
     }

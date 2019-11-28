@@ -1,0 +1,22 @@
+.alert {
+  text-align: center;
+  padding   : 0.2rem 0;
+
+  &-success {
+    color     : green;
+    border    : 1px solid green;
+    background: lightgreen;
+  }
+
+  &-danger {
+    color     : red;
+    border    : 1px solid red;
+    background: lightcoral;
+  }
+
+  &-warning {
+    color     : yellow;
+    border    : 1px solid yellow;
+    background: coral;
+  }
+}

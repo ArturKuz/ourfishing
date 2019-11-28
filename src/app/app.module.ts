@@ -39,6 +39,7 @@ import { PaginatorComponent } from './ui/paginator/paginator.component';
 import { FacebookModule } from 'ngx-facebook';
 import { FacebookApiService } from './services/facebook.service';
 import { MessagePopupComponent } from './ui/dialogs/message-popup/message-popup.component';
+import { AlertComponent } from './ui/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { MessagePopupComponent } from './ui/dialogs/message-popup/message-popup.
     FishInfoComponent,
     PaginatorComponent,
     MessagePopupComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
