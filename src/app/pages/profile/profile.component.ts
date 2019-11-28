@@ -4,6 +4,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PROFILE_INPUTS } from './profileData';
 import { MessageService } from 'src/app/services/message.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private messageService: MessageService,
+    private location: Location,
   ) { }
 
   ngOnInit() {
@@ -74,7 +76,8 @@ export class ProfileComponent implements OnInit {
         },
         error => {
           console.log(error);
-        });
+        }
+      );
   }
 
   onChange(event): void {
@@ -96,7 +99,10 @@ export class ProfileComponent implements OnInit {
 
   deleteAvatar() {
     this.userService.deleteUserAvatar().subscribe(
-      res => this.messageService.openPopUp('Данные сохранены'),
+      res => {
+        this.messageService.openPopUp('Данные сохранены');
+        this.clearAvatarData();
+      },
       error => console.log(error),
     );
   }
@@ -110,7 +116,7 @@ export class ProfileComponent implements OnInit {
     this.isAvatartSaved = true;
   }
 
-  onDeleteAvatar() {
+  clearAvatarData() {
     this.isAvatartSaved = false;
     this.userAvatar = '';
     this.selectedFile = null;
@@ -119,7 +125,7 @@ export class ProfileComponent implements OnInit {
   preview(file) {
 
     if (file.type.match(/image\/*/) == null) {
-      this.messageService.openPopUp('Загрузить можно только изображение')
+      this.messageService.openPopUp('Загрузить можно только изображение');
       console.log('Only images are supported.');
       return;
     }
@@ -129,5 +135,9 @@ export class ProfileComponent implements OnInit {
     reader.onload = (event) => {
       this.userAvatar = reader.result;
     };
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
