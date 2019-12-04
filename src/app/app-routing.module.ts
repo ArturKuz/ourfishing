@@ -11,6 +11,7 @@ import { EventsComponent } from './pages/events/events.component';
 import { FishComponent } from './pages/fish/fish.component';
 import { FishInfoComponent } from './pages/fish/fish-info/fish-info.component';
 import { AuthGuard } from './guards/auth.guard';
+import { FisherMapComponent } from './pages/fisher-map/fisher-map.component';
 
 const routes: Routes = [
   { path: '', component:  HomeComponent },
@@ -21,7 +22,7 @@ const routes: Routes = [
   { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
   { path: 'fish', component: FishComponent, canActivate: [AuthGuard] },
   { path: 'fish/:id', component: FishInfoComponent, canActivate: [AuthGuard] },
-
+  { path: 'map', component: FisherMapComponent },
 
   { path: '**', component: NotFoundComponent }
 ];

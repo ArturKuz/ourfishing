@@ -40,6 +40,8 @@ import { FacebookModule } from 'ngx-facebook';
 import { FacebookApiService } from './services/facebook.service';
 import { MessagePopupComponent } from './ui/dialogs/message-popup/message-popup.component';
 import { AlertComponent } from './ui/alert/alert.component';
+import { MapComponent } from './ui/map/map.component';
+import { FisherMapComponent } from './pages/fisher-map/fisher-map.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { AlertComponent } from './ui/alert/alert.component';
     PaginatorComponent,
     MessagePopupComponent,
     AlertComponent,
+    MapComponent,
+    FisherMapComponent,
   ],
   imports: [
     BrowserModule,
